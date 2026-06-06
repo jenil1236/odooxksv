@@ -28,16 +28,6 @@ export default async function DashboardPage() {
 
   return (
     <>
-      <div className="topbar">
-        <h1 className="topbar-title">Dashboard</h1>
-        <div className="topbar-actions">
-          <span style={{ fontSize: ".8125rem", color: "var(--gray-500)" }}>
-            Welcome back, <strong style={{ color: "var(--gray-800)" }}>{session.firstName}</strong>
-          </span>
-          <span className={`badge role-${session.role}`}>{roleLabel[session.role] ?? session.role}</span>
-        </div>
-      </div>
-
       <div className="page-content">
         <div className="page-header">
           <p className="page-title">Overview</p>

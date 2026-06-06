@@ -59,6 +59,32 @@ function Icon({ name }: { name: string }) {
         <polyline points="11,11 15,8 11,5" /><line x1="15" y1="8" x2="6" y2="8" />
       </svg>
     ),
+    rfq: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="1" width="12" height="14" rx="1.5" />
+        <path d="M5 5h6M5 8h6M5 11h4" />
+      </svg>
+    ),
+    quotation: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="1" y="3" width="14" height="10" rx="1.5" />
+        <path d="M1 6h14" />
+        <path d="M5 9.5h6M5 11.5h4" />
+      </svg>
+    ),
+    checkCircle: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14 8A6 6 0 112 8a6 6 0 0112 0z" />
+        <path d="M5.5 8.5L7 10l3.5-3.5" />
+      </svg>
+    ),
+    fileText: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9.5 2h-6a1.5 1.5 0 00-1.5 1.5v9A1.5 1.5 0 003.5 14h9a1.5 1.5 0 001.5-1.5v-7L9.5 2z" />
+        <path d="M9.5 2v4.5h4.5" />
+        <path d="M5 9h6M5 11.5h4" />
+      </svg>
+    ),
   };
   return <>{icons[name] ?? null}</>;
 }
@@ -86,6 +112,9 @@ export default function Sidebar() {
     : "…";
 
   const isVendor = user?.role === "VENDOR";
+  const isAdmin = user?.role === "ADMIN";
+  const isProcurement = user?.role === "PROCUREMENT_OFFICER";
+  const isManager = user?.role === "MANAGER_APPROVER";
 
   return (
     <aside className="sidebar">
@@ -99,58 +128,73 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <p className="sidebar-section-label">Main</p>
-      <nav className="sidebar-nav" aria-label="Main navigation">
-        {isVendor ? (
-          <Link
-            href="/vendor/profile"
-            className={`sidebar-link${pathname === "/vendor/profile" ? " active" : ""}`}
-          >
-            <Icon name="profile" />
-            My Profile
-          </Link>
-        ) : (
-          <Link
-            href="/dashboard"
-            className={`sidebar-link${pathname === "/dashboard" ? " active" : ""}`}
-          >
-            <Icon name="grid" />
-            Dashboard
-          </Link>
-        )}
-      </nav>
+      {/* ── Vendor Navigation ─────────────── */}
+      {isVendor && (
+        <>
+          <p className="sidebar-section-label">Vendor Portal</p>
+          <nav className="sidebar-nav" aria-label="Vendor navigation">
+            <Link href="/vendor/dashboard" className={`sidebar-link${pathname === "/vendor/dashboard" ? " active" : ""}`}>
+              <Icon name="grid" /> Dashboard
+            </Link>
+            <Link href="/vendor/rfqs" className={`sidebar-link${pathname.startsWith("/vendor/rfqs") ? " active" : ""}`}>
+              <Icon name="rfq" /> Assigned RFQs
+            </Link>
+            <Link href="/vendor/quotations" className={`sidebar-link${pathname.startsWith("/vendor/quotations") ? " active" : ""}`}>
+              <Icon name="quotation" /> My Quotations
+            </Link>
+            <Link href="/vendor/profile" className={`sidebar-link${pathname === "/vendor/profile" ? " active" : ""}`}>
+              <Icon name="profile" /> My Profile
+            </Link>
+          </nav>
+        </>
+      )}
 
-      {user?.role === "ADMIN" && (
+      {/* ── Internal User Navigation ───────── */}
+      {!isVendor && (
+        <>
+          <p className="sidebar-section-label">Main</p>
+          <nav className="sidebar-nav" aria-label="Main navigation">
+            <Link href="/dashboard" className={`sidebar-link${pathname === "/dashboard" ? " active" : ""}`}>
+              <Icon name="grid" /> Dashboard
+            </Link>
+          </nav>
+        </>
+      )}
+
+      {/* ── Procurement Section ─────────────── */}
+      {(isProcurement || isManager || isAdmin) && (
+        <>
+          <p className="sidebar-section-label" style={{ marginTop: ".75rem" }}>Procurement</p>
+          <nav className="sidebar-nav" aria-label="Procurement navigation">
+            <Link href="/rfqs" className={`sidebar-link${pathname.startsWith("/rfqs") ? " active" : ""}`}>
+              <Icon name="rfq" /> RFQs
+            </Link>
+            <Link href="/approvals" className={`sidebar-link${pathname.startsWith("/approvals") ? " active" : ""}`}>
+              <Icon name="checkCircle" /> Approvals
+            </Link>
+            <Link href="/purchase-orders" className={`sidebar-link${pathname.startsWith("/purchase-orders") ? " active" : ""}`}>
+              <Icon name="fileText" /> Purchase Orders
+            </Link>
+          </nav>
+        </>
+      )}
+
+      {/* ── Admin Section ───────────────────── */}
+      {isAdmin && (
         <>
           <p className="sidebar-section-label" style={{ marginTop: ".75rem" }}>Administration</p>
           <nav className="sidebar-nav" aria-label="Admin navigation">
-            <Link
-              href="/admin/users"
-              className={`sidebar-link${pathname.startsWith("/admin/users") ? " active" : ""}`}
-            >
-              <Icon name="users" />
-              Users
+            <Link href="/admin/users" className={`sidebar-link${pathname.startsWith("/admin/users") ? " active" : ""}`}>
+              <Icon name="users" /> Users
             </Link>
-            <Link
-              href="/admin/vendors"
-              className={`sidebar-link${pathname.startsWith("/admin/vendors") ? " active" : ""}`}
-            >
-              <Icon name="briefcase" />
-              Vendors
+            <Link href="/admin/vendors" className={`sidebar-link${pathname.startsWith("/admin/vendors") ? " active" : ""}`}>
+              <Icon name="briefcase" /> Vendors
             </Link>
-            <Link
-              href="/admin/categories"
-              className={`sidebar-link${pathname.startsWith("/admin/categories") ? " active" : ""}`}
-            >
-              <Icon name="folder" />
-              Categories
+            <Link href="/admin/categories" className={`sidebar-link${pathname.startsWith("/admin/categories") ? " active" : ""}`}>
+              <Icon name="folder" /> Categories
             </Link>
-            <Link
-              href="/admin/logs"
-              className={`sidebar-link${pathname.startsWith("/admin/logs") ? " active" : ""}`}
-            >
-              <Icon name="activity" />
-              Audit Logs
+            <Link href="/admin/logs" className={`sidebar-link${pathname.startsWith("/admin/logs") ? " active" : ""}`}>
+              <Icon name="activity" /> Audit Logs
             </Link>
           </nav>
         </>

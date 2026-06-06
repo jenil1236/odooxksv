@@ -41,9 +41,7 @@ export default function AuditLogsPage() {
 
   return (
     <>
-      <div className="topbar">
-        <h1 className="topbar-title">Audit Trail</h1>
-      </div>
+
 
       <div className="page-content">
         <div className="page-header">

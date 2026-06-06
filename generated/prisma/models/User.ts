@@ -250,6 +250,10 @@ export type UserWhereInput = {
   vendor?: Prisma.XOR<Prisma.VendorNullableScalarRelationFilter, Prisma.VendorWhereInput> | null
   notifications?: Prisma.NotificationListRelationFilter
   activityLogs?: Prisma.ActivityLogListRelationFilter
+  rfqs?: Prisma.RFQListRelationFilter
+  approvalsRequested?: Prisma.ApprovalListRelationFilter
+  approvalsActioned?: Prisma.ApprovalListRelationFilter
+  purchaseOrders?: Prisma.PurchaseOrderListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -270,6 +274,10 @@ export type UserOrderByWithRelationInput = {
   vendor?: Prisma.VendorOrderByWithRelationInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
   activityLogs?: Prisma.ActivityLogOrderByRelationAggregateInput
+  rfqs?: Prisma.RFQOrderByRelationAggregateInput
+  approvalsRequested?: Prisma.ApprovalOrderByRelationAggregateInput
+  approvalsActioned?: Prisma.ApprovalOrderByRelationAggregateInput
+  purchaseOrders?: Prisma.PurchaseOrderOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -293,6 +301,10 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   vendor?: Prisma.XOR<Prisma.VendorNullableScalarRelationFilter, Prisma.VendorWhereInput> | null
   notifications?: Prisma.NotificationListRelationFilter
   activityLogs?: Prisma.ActivityLogListRelationFilter
+  rfqs?: Prisma.RFQListRelationFilter
+  approvalsRequested?: Prisma.ApprovalListRelationFilter
+  approvalsActioned?: Prisma.ApprovalListRelationFilter
+  purchaseOrders?: Prisma.PurchaseOrderListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -350,6 +362,10 @@ export type UserCreateInput = {
   vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQCreateNestedManyWithoutCreatedByInput
+  approvalsRequested?: Prisma.ApprovalCreateNestedManyWithoutRequestedByInput
+  approvalsActioned?: Prisma.ApprovalCreateNestedManyWithoutApproverInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutApprovedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -369,6 +385,10 @@ export type UserUncheckedCreateInput = {
   vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQUncheckedCreateNestedManyWithoutCreatedByInput
+  approvalsRequested?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRequestedByInput
+  approvalsActioned?: Prisma.ApprovalUncheckedCreateNestedManyWithoutApproverInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutApprovedByInput
 }
 
 export type UserUpdateInput = {
@@ -388,6 +408,10 @@ export type UserUpdateInput = {
   vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUpdateManyWithoutCreatedByNestedInput
+  approvalsRequested?: Prisma.ApprovalUpdateManyWithoutRequestedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUpdateManyWithoutApproverNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutApprovedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -407,6 +431,10 @@ export type UserUncheckedUpdateInput = {
   vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvalsRequested?: Prisma.ApprovalUncheckedUpdateManyWithoutRequestedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUncheckedUpdateManyWithoutApproverNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutApprovedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -618,6 +646,64 @@ export type UserUpdateOneRequiredWithoutActivityLogsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutActivityLogsInput, Prisma.UserUpdateWithoutActivityLogsInput>, Prisma.UserUncheckedUpdateWithoutActivityLogsInput>
 }
 
+export type UserCreateNestedOneWithoutRfqsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRfqsInput, Prisma.UserUncheckedCreateWithoutRfqsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRfqsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutRfqsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRfqsInput, Prisma.UserUncheckedCreateWithoutRfqsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRfqsInput
+  upsert?: Prisma.UserUpsertWithoutRfqsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRfqsInput, Prisma.UserUpdateWithoutRfqsInput>, Prisma.UserUncheckedUpdateWithoutRfqsInput>
+}
+
+export type UserCreateNestedOneWithoutApprovalsRequestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutApprovalsRequestedInput, Prisma.UserUncheckedCreateWithoutApprovalsRequestedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApprovalsRequestedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutApprovalsActionedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutApprovalsActionedInput, Prisma.UserUncheckedCreateWithoutApprovalsActionedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApprovalsActionedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutApprovalsRequestedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutApprovalsRequestedInput, Prisma.UserUncheckedCreateWithoutApprovalsRequestedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApprovalsRequestedInput
+  upsert?: Prisma.UserUpsertWithoutApprovalsRequestedInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutApprovalsRequestedInput, Prisma.UserUpdateWithoutApprovalsRequestedInput>, Prisma.UserUncheckedUpdateWithoutApprovalsRequestedInput>
+}
+
+export type UserUpdateOneWithoutApprovalsActionedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutApprovalsActionedInput, Prisma.UserUncheckedCreateWithoutApprovalsActionedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApprovalsActionedInput
+  upsert?: Prisma.UserUpsertWithoutApprovalsActionedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutApprovalsActionedInput, Prisma.UserUpdateWithoutApprovalsActionedInput>, Prisma.UserUncheckedUpdateWithoutApprovalsActionedInput>
+}
+
+export type UserCreateNestedOneWithoutPurchaseOrdersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPurchaseOrdersInput, Prisma.UserUncheckedCreateWithoutPurchaseOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPurchaseOrdersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPurchaseOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPurchaseOrdersInput, Prisma.UserUncheckedCreateWithoutPurchaseOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPurchaseOrdersInput
+  upsert?: Prisma.UserUpsertWithoutPurchaseOrdersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPurchaseOrdersInput, Prisma.UserUpdateWithoutPurchaseOrdersInput>, Prisma.UserUncheckedUpdateWithoutPurchaseOrdersInput>
+}
+
 export type UserCreateWithoutOrganizationInput = {
   id?: string
   firstName: string
@@ -634,6 +720,10 @@ export type UserCreateWithoutOrganizationInput = {
   vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQCreateNestedManyWithoutCreatedByInput
+  approvalsRequested?: Prisma.ApprovalCreateNestedManyWithoutRequestedByInput
+  approvalsActioned?: Prisma.ApprovalCreateNestedManyWithoutApproverInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutApprovedByInput
 }
 
 export type UserUncheckedCreateWithoutOrganizationInput = {
@@ -652,6 +742,10 @@ export type UserUncheckedCreateWithoutOrganizationInput = {
   vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQUncheckedCreateNestedManyWithoutCreatedByInput
+  approvalsRequested?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRequestedByInput
+  approvalsActioned?: Prisma.ApprovalUncheckedCreateNestedManyWithoutApproverInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutApprovedByInput
 }
 
 export type UserCreateOrConnectWithoutOrganizationInput = {
@@ -715,6 +809,10 @@ export type UserCreateWithoutVendorInput = {
   organization?: Prisma.OrganizationCreateNestedOneWithoutUsersInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQCreateNestedManyWithoutCreatedByInput
+  approvalsRequested?: Prisma.ApprovalCreateNestedManyWithoutRequestedByInput
+  approvalsActioned?: Prisma.ApprovalCreateNestedManyWithoutApproverInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutApprovedByInput
 }
 
 export type UserUncheckedCreateWithoutVendorInput = {
@@ -733,6 +831,10 @@ export type UserUncheckedCreateWithoutVendorInput = {
   updatedAt?: Date | string
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQUncheckedCreateNestedManyWithoutCreatedByInput
+  approvalsRequested?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRequestedByInput
+  approvalsActioned?: Prisma.ApprovalUncheckedCreateNestedManyWithoutApproverInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutApprovedByInput
 }
 
 export type UserCreateOrConnectWithoutVendorInput = {
@@ -767,6 +869,10 @@ export type UserUpdateWithoutVendorInput = {
   organization?: Prisma.OrganizationUpdateOneWithoutUsersNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUpdateManyWithoutCreatedByNestedInput
+  approvalsRequested?: Prisma.ApprovalUpdateManyWithoutRequestedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUpdateManyWithoutApproverNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutApprovedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVendorInput = {
@@ -785,6 +891,10 @@ export type UserUncheckedUpdateWithoutVendorInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvalsRequested?: Prisma.ApprovalUncheckedUpdateManyWithoutRequestedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUncheckedUpdateManyWithoutApproverNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutApprovedByNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -803,6 +913,10 @@ export type UserCreateWithoutNotificationsInput = {
   organization?: Prisma.OrganizationCreateNestedOneWithoutUsersInput
   vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQCreateNestedManyWithoutCreatedByInput
+  approvalsRequested?: Prisma.ApprovalCreateNestedManyWithoutRequestedByInput
+  approvalsActioned?: Prisma.ApprovalCreateNestedManyWithoutApproverInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutApprovedByInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -821,6 +935,10 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   updatedAt?: Date | string
   vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQUncheckedCreateNestedManyWithoutCreatedByInput
+  approvalsRequested?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRequestedByInput
+  approvalsActioned?: Prisma.ApprovalUncheckedCreateNestedManyWithoutApproverInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutApprovedByInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -855,6 +973,10 @@ export type UserUpdateWithoutNotificationsInput = {
   organization?: Prisma.OrganizationUpdateOneWithoutUsersNestedInput
   vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUpdateManyWithoutCreatedByNestedInput
+  approvalsRequested?: Prisma.ApprovalUpdateManyWithoutRequestedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUpdateManyWithoutApproverNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutApprovedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -873,6 +995,10 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvalsRequested?: Prisma.ApprovalUncheckedUpdateManyWithoutRequestedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUncheckedUpdateManyWithoutApproverNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutApprovedByNestedInput
 }
 
 export type UserCreateWithoutActivityLogsInput = {
@@ -891,6 +1017,10 @@ export type UserCreateWithoutActivityLogsInput = {
   organization?: Prisma.OrganizationCreateNestedOneWithoutUsersInput
   vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQCreateNestedManyWithoutCreatedByInput
+  approvalsRequested?: Prisma.ApprovalCreateNestedManyWithoutRequestedByInput
+  approvalsActioned?: Prisma.ApprovalCreateNestedManyWithoutApproverInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutApprovedByInput
 }
 
 export type UserUncheckedCreateWithoutActivityLogsInput = {
@@ -909,6 +1039,10 @@ export type UserUncheckedCreateWithoutActivityLogsInput = {
   updatedAt?: Date | string
   vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQUncheckedCreateNestedManyWithoutCreatedByInput
+  approvalsRequested?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRequestedByInput
+  approvalsActioned?: Prisma.ApprovalUncheckedCreateNestedManyWithoutApproverInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutApprovedByInput
 }
 
 export type UserCreateOrConnectWithoutActivityLogsInput = {
@@ -943,6 +1077,10 @@ export type UserUpdateWithoutActivityLogsInput = {
   organization?: Prisma.OrganizationUpdateOneWithoutUsersNestedInput
   vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUpdateManyWithoutCreatedByNestedInput
+  approvalsRequested?: Prisma.ApprovalUpdateManyWithoutRequestedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUpdateManyWithoutApproverNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutApprovedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutActivityLogsInput = {
@@ -961,6 +1099,426 @@ export type UserUncheckedUpdateWithoutActivityLogsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvalsRequested?: Prisma.ApprovalUncheckedUpdateManyWithoutRequestedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUncheckedUpdateManyWithoutApproverNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutApprovedByNestedInput
+}
+
+export type UserCreateWithoutRfqsInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  phone?: string | null
+  country?: string | null
+  additionalInfo?: string | null
+  role?: $Enums.Role
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization?: Prisma.OrganizationCreateNestedOneWithoutUsersInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
+  approvalsRequested?: Prisma.ApprovalCreateNestedManyWithoutRequestedByInput
+  approvalsActioned?: Prisma.ApprovalCreateNestedManyWithoutApproverInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutApprovedByInput
+}
+
+export type UserUncheckedCreateWithoutRfqsInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  phone?: string | null
+  country?: string | null
+  additionalInfo?: string | null
+  role?: $Enums.Role
+  isActive?: boolean
+  organizationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
+  approvalsRequested?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRequestedByInput
+  approvalsActioned?: Prisma.ApprovalUncheckedCreateNestedManyWithoutApproverInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutApprovedByInput
+}
+
+export type UserCreateOrConnectWithoutRfqsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRfqsInput, Prisma.UserUncheckedCreateWithoutRfqsInput>
+}
+
+export type UserUpsertWithoutRfqsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRfqsInput, Prisma.UserUncheckedUpdateWithoutRfqsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRfqsInput, Prisma.UserUncheckedCreateWithoutRfqsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRfqsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRfqsInput, Prisma.UserUncheckedUpdateWithoutRfqsInput>
+}
+
+export type UserUpdateWithoutRfqsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneWithoutUsersNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
+  approvalsRequested?: Prisma.ApprovalUpdateManyWithoutRequestedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUpdateManyWithoutApproverNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutApprovedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRfqsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
+  approvalsRequested?: Prisma.ApprovalUncheckedUpdateManyWithoutRequestedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUncheckedUpdateManyWithoutApproverNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutApprovedByNestedInput
+}
+
+export type UserCreateWithoutApprovalsRequestedInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  phone?: string | null
+  country?: string | null
+  additionalInfo?: string | null
+  role?: $Enums.Role
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization?: Prisma.OrganizationCreateNestedOneWithoutUsersInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQCreateNestedManyWithoutCreatedByInput
+  approvalsActioned?: Prisma.ApprovalCreateNestedManyWithoutApproverInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutApprovedByInput
+}
+
+export type UserUncheckedCreateWithoutApprovalsRequestedInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  phone?: string | null
+  country?: string | null
+  additionalInfo?: string | null
+  role?: $Enums.Role
+  isActive?: boolean
+  organizationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQUncheckedCreateNestedManyWithoutCreatedByInput
+  approvalsActioned?: Prisma.ApprovalUncheckedCreateNestedManyWithoutApproverInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutApprovedByInput
+}
+
+export type UserCreateOrConnectWithoutApprovalsRequestedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutApprovalsRequestedInput, Prisma.UserUncheckedCreateWithoutApprovalsRequestedInput>
+}
+
+export type UserCreateWithoutApprovalsActionedInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  phone?: string | null
+  country?: string | null
+  additionalInfo?: string | null
+  role?: $Enums.Role
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization?: Prisma.OrganizationCreateNestedOneWithoutUsersInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQCreateNestedManyWithoutCreatedByInput
+  approvalsRequested?: Prisma.ApprovalCreateNestedManyWithoutRequestedByInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutApprovedByInput
+}
+
+export type UserUncheckedCreateWithoutApprovalsActionedInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  phone?: string | null
+  country?: string | null
+  additionalInfo?: string | null
+  role?: $Enums.Role
+  isActive?: boolean
+  organizationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQUncheckedCreateNestedManyWithoutCreatedByInput
+  approvalsRequested?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRequestedByInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutApprovedByInput
+}
+
+export type UserCreateOrConnectWithoutApprovalsActionedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutApprovalsActionedInput, Prisma.UserUncheckedCreateWithoutApprovalsActionedInput>
+}
+
+export type UserUpsertWithoutApprovalsRequestedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutApprovalsRequestedInput, Prisma.UserUncheckedUpdateWithoutApprovalsRequestedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutApprovalsRequestedInput, Prisma.UserUncheckedCreateWithoutApprovalsRequestedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutApprovalsRequestedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutApprovalsRequestedInput, Prisma.UserUncheckedUpdateWithoutApprovalsRequestedInput>
+}
+
+export type UserUpdateWithoutApprovalsRequestedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneWithoutUsersNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUpdateManyWithoutCreatedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUpdateManyWithoutApproverNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutApprovedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutApprovalsRequestedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUncheckedUpdateManyWithoutApproverNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutApprovedByNestedInput
+}
+
+export type UserUpsertWithoutApprovalsActionedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutApprovalsActionedInput, Prisma.UserUncheckedUpdateWithoutApprovalsActionedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutApprovalsActionedInput, Prisma.UserUncheckedCreateWithoutApprovalsActionedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutApprovalsActionedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutApprovalsActionedInput, Prisma.UserUncheckedUpdateWithoutApprovalsActionedInput>
+}
+
+export type UserUpdateWithoutApprovalsActionedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneWithoutUsersNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUpdateManyWithoutCreatedByNestedInput
+  approvalsRequested?: Prisma.ApprovalUpdateManyWithoutRequestedByNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutApprovedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutApprovalsActionedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvalsRequested?: Prisma.ApprovalUncheckedUpdateManyWithoutRequestedByNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutApprovedByNestedInput
+}
+
+export type UserCreateWithoutPurchaseOrdersInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  phone?: string | null
+  country?: string | null
+  additionalInfo?: string | null
+  role?: $Enums.Role
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization?: Prisma.OrganizationCreateNestedOneWithoutUsersInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQCreateNestedManyWithoutCreatedByInput
+  approvalsRequested?: Prisma.ApprovalCreateNestedManyWithoutRequestedByInput
+  approvalsActioned?: Prisma.ApprovalCreateNestedManyWithoutApproverInput
+}
+
+export type UserUncheckedCreateWithoutPurchaseOrdersInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  passwordHash: string
+  phone?: string | null
+  country?: string | null
+  additionalInfo?: string | null
+  role?: $Enums.Role
+  isActive?: boolean
+  organizationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput
+  rfqs?: Prisma.RFQUncheckedCreateNestedManyWithoutCreatedByInput
+  approvalsRequested?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRequestedByInput
+  approvalsActioned?: Prisma.ApprovalUncheckedCreateNestedManyWithoutApproverInput
+}
+
+export type UserCreateOrConnectWithoutPurchaseOrdersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPurchaseOrdersInput, Prisma.UserUncheckedCreateWithoutPurchaseOrdersInput>
+}
+
+export type UserUpsertWithoutPurchaseOrdersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPurchaseOrdersInput, Prisma.UserUncheckedUpdateWithoutPurchaseOrdersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPurchaseOrdersInput, Prisma.UserUncheckedCreateWithoutPurchaseOrdersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPurchaseOrdersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPurchaseOrdersInput, Prisma.UserUncheckedUpdateWithoutPurchaseOrdersInput>
+}
+
+export type UserUpdateWithoutPurchaseOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneWithoutUsersNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUpdateManyWithoutCreatedByNestedInput
+  approvalsRequested?: Prisma.ApprovalUpdateManyWithoutRequestedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUpdateManyWithoutApproverNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPurchaseOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvalsRequested?: Prisma.ApprovalUncheckedUpdateManyWithoutRequestedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUncheckedUpdateManyWithoutApproverNestedInput
 }
 
 export type UserCreateManyOrganizationInput = {
@@ -994,6 +1552,10 @@ export type UserUpdateWithoutOrganizationInput = {
   vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUpdateManyWithoutCreatedByNestedInput
+  approvalsRequested?: Prisma.ApprovalUpdateManyWithoutRequestedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUpdateManyWithoutApproverNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutApprovedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrganizationInput = {
@@ -1012,6 +1574,10 @@ export type UserUncheckedUpdateWithoutOrganizationInput = {
   vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput
+  rfqs?: Prisma.RFQUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvalsRequested?: Prisma.ApprovalUncheckedUpdateManyWithoutRequestedByNestedInput
+  approvalsActioned?: Prisma.ApprovalUncheckedUpdateManyWithoutApproverNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutApprovedByNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutOrganizationInput = {
@@ -1037,11 +1603,19 @@ export type UserUncheckedUpdateManyWithoutOrganizationInput = {
 export type UserCountOutputType = {
   notifications: number
   activityLogs: number
+  rfqs: number
+  approvalsRequested: number
+  approvalsActioned: number
+  purchaseOrders: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
   activityLogs?: boolean | UserCountOutputTypeCountActivityLogsArgs
+  rfqs?: boolean | UserCountOutputTypeCountRfqsArgs
+  approvalsRequested?: boolean | UserCountOutputTypeCountApprovalsRequestedArgs
+  approvalsActioned?: boolean | UserCountOutputTypeCountApprovalsActionedArgs
+  purchaseOrders?: boolean | UserCountOutputTypeCountPurchaseOrdersArgs
 }
 
 /**
@@ -1068,6 +1642,34 @@ export type UserCountOutputTypeCountActivityLogsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.ActivityLogWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRfqsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RFQWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountApprovalsRequestedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApprovalWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountApprovalsActionedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApprovalWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPurchaseOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PurchaseOrderWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1087,6 +1689,10 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   vendor?: boolean | Prisma.User$vendorArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   activityLogs?: boolean | Prisma.User$activityLogsArgs<ExtArgs>
+  rfqs?: boolean | Prisma.User$rfqsArgs<ExtArgs>
+  approvalsRequested?: boolean | Prisma.User$approvalsRequestedArgs<ExtArgs>
+  approvalsActioned?: boolean | Prisma.User$approvalsActionedArgs<ExtArgs>
+  purchaseOrders?: boolean | Prisma.User$purchaseOrdersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1146,6 +1752,10 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   vendor?: boolean | Prisma.User$vendorArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   activityLogs?: boolean | Prisma.User$activityLogsArgs<ExtArgs>
+  rfqs?: boolean | Prisma.User$rfqsArgs<ExtArgs>
+  approvalsRequested?: boolean | Prisma.User$approvalsRequestedArgs<ExtArgs>
+  approvalsActioned?: boolean | Prisma.User$approvalsActionedArgs<ExtArgs>
+  purchaseOrders?: boolean | Prisma.User$purchaseOrdersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1162,6 +1772,10 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     vendor: Prisma.$VendorPayload<ExtArgs> | null
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
     activityLogs: Prisma.$ActivityLogPayload<ExtArgs>[]
+    rfqs: Prisma.$RFQPayload<ExtArgs>[]
+    approvalsRequested: Prisma.$ApprovalPayload<ExtArgs>[]
+    approvalsActioned: Prisma.$ApprovalPayload<ExtArgs>[]
+    purchaseOrders: Prisma.$PurchaseOrderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1575,6 +2189,10 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   vendor<T extends Prisma.User$vendorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$vendorArgs<ExtArgs>>): Prisma.Prisma__VendorClient<runtime.Types.Result.GetResult<Prisma.$VendorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   activityLogs<T extends Prisma.User$activityLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$activityLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  rfqs<T extends Prisma.User$rfqsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$rfqsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RFQPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  approvalsRequested<T extends Prisma.User$approvalsRequestedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$approvalsRequestedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApprovalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  approvalsActioned<T extends Prisma.User$approvalsActionedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$approvalsActionedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApprovalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  purchaseOrders<T extends Prisma.User$purchaseOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$purchaseOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PurchaseOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2101,6 +2719,102 @@ export type User$activityLogsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.ActivityLogScalarFieldEnum | Prisma.ActivityLogScalarFieldEnum[]
+}
+
+/**
+ * User.rfqs
+ */
+export type User$rfqsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RFQ
+   */
+  select?: Prisma.RFQSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RFQ
+   */
+  omit?: Prisma.RFQOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RFQInclude<ExtArgs> | null
+  where?: Prisma.RFQWhereInput
+  orderBy?: Prisma.RFQOrderByWithRelationInput | Prisma.RFQOrderByWithRelationInput[]
+  cursor?: Prisma.RFQWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RFQScalarFieldEnum | Prisma.RFQScalarFieldEnum[]
+}
+
+/**
+ * User.approvalsRequested
+ */
+export type User$approvalsRequestedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Approval
+   */
+  select?: Prisma.ApprovalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Approval
+   */
+  omit?: Prisma.ApprovalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApprovalInclude<ExtArgs> | null
+  where?: Prisma.ApprovalWhereInput
+  orderBy?: Prisma.ApprovalOrderByWithRelationInput | Prisma.ApprovalOrderByWithRelationInput[]
+  cursor?: Prisma.ApprovalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApprovalScalarFieldEnum | Prisma.ApprovalScalarFieldEnum[]
+}
+
+/**
+ * User.approvalsActioned
+ */
+export type User$approvalsActionedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Approval
+   */
+  select?: Prisma.ApprovalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Approval
+   */
+  omit?: Prisma.ApprovalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApprovalInclude<ExtArgs> | null
+  where?: Prisma.ApprovalWhereInput
+  orderBy?: Prisma.ApprovalOrderByWithRelationInput | Prisma.ApprovalOrderByWithRelationInput[]
+  cursor?: Prisma.ApprovalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApprovalScalarFieldEnum | Prisma.ApprovalScalarFieldEnum[]
+}
+
+/**
+ * User.purchaseOrders
+ */
+export type User$purchaseOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PurchaseOrder
+   */
+  select?: Prisma.PurchaseOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PurchaseOrder
+   */
+  omit?: Prisma.PurchaseOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PurchaseOrderInclude<ExtArgs> | null
+  where?: Prisma.PurchaseOrderWhereInput
+  orderBy?: Prisma.PurchaseOrderOrderByWithRelationInput | Prisma.PurchaseOrderOrderByWithRelationInput[]
+  cursor?: Prisma.PurchaseOrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PurchaseOrderScalarFieldEnum | Prisma.PurchaseOrderScalarFieldEnum[]
 }
 
 /**

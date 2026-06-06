@@ -379,6 +379,8 @@ tr:hover td { background: var(--gray-50); }
 .badge-gray { background: var(--gray-100); color: var(--gray-500); }
 .badge-green { background: var(--green-50); color: #15803D; }
 .badge-red { background: var(--red-50); color: #B91C1C; }
+.badge-yellow { background: #FEF3C7; color: #92400E; }
+.badge-purple { background: #F3E8FF; color: #6B21A8; }
 
 /* ── Modal ───────────────────────────────────── */
 .modal-overlay {

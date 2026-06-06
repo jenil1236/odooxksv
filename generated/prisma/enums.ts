@@ -27,3 +27,44 @@ export const VendorStatus = {
 } as const
 
 export type VendorStatus = (typeof VendorStatus)[keyof typeof VendorStatus]
+
+
+export const RFQStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  CLOSED: 'CLOSED',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type RFQStatus = (typeof RFQStatus)[keyof typeof RFQStatus]
+
+
+export const QuotationStatus = {
+  DRAFT: 'DRAFT',
+  SUBMITTED: 'SUBMITTED',
+  REVISED: 'REVISED',
+  SELECTED: 'SELECTED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type QuotationStatus = (typeof QuotationStatus)[keyof typeof QuotationStatus]
+
+
+export const ApprovalStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type ApprovalStatus = (typeof ApprovalStatus)[keyof typeof ApprovalStatus]
+
+
+export const POStatus = {
+  GENERATED: 'GENERATED',
+  SENT: 'SENT',
+  FULFILLED: 'FULFILLED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type POStatus = (typeof POStatus)[keyof typeof POStatus]

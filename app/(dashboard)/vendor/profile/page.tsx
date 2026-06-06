@@ -52,10 +52,6 @@ export default function VendorProfilePage() {
 
   return (
     <>
-      <div className="topbar">
-        <h1 className="topbar-title">Vendor Profile</h1>
-      </div>
-
       <div className="page-content">
         <div className="page-header">
           <p className="page-title">{vendor.companyName}</p>
@@ -71,7 +67,7 @@ export default function VendorProfilePage() {
             
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem", marginBottom: "1.5rem" }}>
               <div>
-                <span style={{ fontSize: "0.75rem", textTransform: "uppercase", tracking: "wider", color: "var(--gray-400)", display: "block", marginBottom: "0.25rem" }}>
+                <span style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--gray-400)", display: "block", marginBottom: "0.25rem" }}>
                   GST Number
                 </span>
                 <span style={{ fontSize: "0.9375rem", fontWeight: 500, color: "var(--gray-700)", fontFamily: "monospace" }}>
@@ -79,7 +75,7 @@ export default function VendorProfilePage() {
                 </span>
               </div>
               <div>
-                <span style={{ fontSize: "0.75rem", textTransform: "uppercase", tracking: "wider", color: "var(--gray-400)", display: "block", marginBottom: "0.25rem" }}>
+                <span style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--gray-400)", display: "block", marginBottom: "0.25rem" }}>
                   Category
                 </span>
                 <span className="badge badge-info" style={{ display: "inline-block" }}>
@@ -146,7 +142,7 @@ export default function VendorProfilePage() {
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem" }}>
               <span style={{ fontSize: "0.875rem", color: "var(--gray-500)" }}>Platform Rating:</span>
               <span style={{ fontWeight: 600, color: "var(--yellow-600)", fontSize: "1rem" }}>
-                ⭐ {vendor.rating.toFixed(1)} / 5.0
+                ⭐ {Number(vendor.rating).toFixed(1)} / 5.0
               </span>
             </div>
 

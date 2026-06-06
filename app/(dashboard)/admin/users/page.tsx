@@ -86,19 +86,15 @@ export default function AdminUsersPage() {
 
   return (
     <>
-      <div className="topbar">
-        <h1 className="topbar-title">Users</h1>
-        <div className="topbar-actions">
+      <div className="page-content">
+        <div className="page-header" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div>
+            <p className="page-title">Organization Users</p>
+            <p className="page-desc">Manage your team members and their access roles.</p>
+          </div>
           <button id="open-create-user" className="btn btn-primary btn-sm" onClick={() => { setError(""); setSuccess(""); setModalOpen(true); }}>
             + Add User
           </button>
-        </div>
-      </div>
-
-      <div className="page-content">
-        <div className="page-header">
-          <p className="page-title">Organization Users</p>
-          <p className="page-desc">Manage your team members and their access roles.</p>
         </div>
 
         {success && <div className="alert alert-success">{success}</div>}

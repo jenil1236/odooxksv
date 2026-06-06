@@ -258,9 +258,12 @@ export default function AdminVendorsPage() {
 
   return (
     <>
-      <div className="topbar">
-        <h1 className="topbar-title">Vendor Directory</h1>
-        <div className="topbar-actions">
+      <div className="page-content">
+        <div className="page-header" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div>
+            <p className="page-title">Vendor Master Data</p>
+            <p className="page-desc">Add, search, filter and configure partner profiles.</p>
+          </div>
           <button
             id="open-register-vendor"
             className="btn btn-primary btn-sm"
@@ -272,13 +275,6 @@ export default function AdminVendorsPage() {
           >
             + Register Vendor
           </button>
-        </div>
-      </div>
-
-      <div className="page-content">
-        <div className="page-header">
-          <p className="page-title">Vendor Master Data</p>
-          <p className="page-desc">Add, search, filter and configure partner profiles.</p>
         </div>
 
         {success && <div className="alert alert-success">{success}</div>}

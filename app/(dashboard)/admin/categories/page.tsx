@@ -78,9 +78,12 @@ export default function AdminCategoriesPage() {
 
   return (
     <>
-      <div className="topbar">
-        <h1 className="topbar-title">Vendor Categories</h1>
-        <div className="topbar-actions">
+      <div className="page-content">
+        <div className="page-header" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div>
+            <p className="page-title">Manage Categories</p>
+            <p className="page-desc">Create and view vendor classification categories.</p>
+          </div>
           <button
             id="open-create-category"
             className="btn btn-primary btn-sm"
@@ -92,13 +95,6 @@ export default function AdminCategoriesPage() {
           >
             + Add Category
           </button>
-        </div>
-      </div>
-
-      <div className="page-content">
-        <div className="page-header">
-          <p className="page-title">Manage Categories</p>
-          <p className="page-desc">Create and view vendor classification categories.</p>
         </div>
 
         {success && <div className="alert alert-success">{success}</div>}

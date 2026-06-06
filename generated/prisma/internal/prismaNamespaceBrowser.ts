@@ -56,7 +56,16 @@ export const ModelName = {
   VendorCategory: 'VendorCategory',
   Vendor: 'Vendor',
   Notification: 'Notification',
-  ActivityLog: 'ActivityLog'
+  ActivityLog: 'ActivityLog',
+  RFQ: 'RFQ',
+  RFQItem: 'RFQItem',
+  RFQInvitation: 'RFQInvitation',
+  RFQAttachment: 'RFQAttachment',
+  Quotation: 'Quotation',
+  QuotationItem: 'QuotationItem',
+  Approval: 'Approval',
+  PurchaseOrder: 'PurchaseOrder',
+  PurchaseOrderItem: 'PurchaseOrderItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -163,6 +172,137 @@ export const ActivityLogScalarFieldEnum = {
 } as const
 
 export type ActivityLogScalarFieldEnum = (typeof ActivityLogScalarFieldEnum)[keyof typeof ActivityLogScalarFieldEnum]
+
+
+export const RFQScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  category: 'category',
+  description: 'description',
+  deadline: 'deadline',
+  status: 'status',
+  createdById: 'createdById',
+  organizationId: 'organizationId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  selectedQuotationId: 'selectedQuotationId'
+} as const
+
+export type RFQScalarFieldEnum = (typeof RFQScalarFieldEnum)[keyof typeof RFQScalarFieldEnum]
+
+
+export const RFQItemScalarFieldEnum = {
+  id: 'id',
+  rfqId: 'rfqId',
+  itemName: 'itemName',
+  quantity: 'quantity',
+  unit: 'unit',
+  description: 'description'
+} as const
+
+export type RFQItemScalarFieldEnum = (typeof RFQItemScalarFieldEnum)[keyof typeof RFQItemScalarFieldEnum]
+
+
+export const RFQInvitationScalarFieldEnum = {
+  id: 'id',
+  rfqId: 'rfqId',
+  vendorId: 'vendorId',
+  invitedAt: 'invitedAt'
+} as const
+
+export type RFQInvitationScalarFieldEnum = (typeof RFQInvitationScalarFieldEnum)[keyof typeof RFQInvitationScalarFieldEnum]
+
+
+export const RFQAttachmentScalarFieldEnum = {
+  id: 'id',
+  rfqId: 'rfqId',
+  fileName: 'fileName',
+  fileUrl: 'fileUrl',
+  uploadedAt: 'uploadedAt'
+} as const
+
+export type RFQAttachmentScalarFieldEnum = (typeof RFQAttachmentScalarFieldEnum)[keyof typeof RFQAttachmentScalarFieldEnum]
+
+
+export const QuotationScalarFieldEnum = {
+  id: 'id',
+  rfqId: 'rfqId',
+  vendorId: 'vendorId',
+  status: 'status',
+  notes: 'notes',
+  paymentTerms: 'paymentTerms',
+  subtotal: 'subtotal',
+  gstPercent: 'gstPercent',
+  grandTotal: 'grandTotal',
+  submittedAt: 'submittedAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuotationScalarFieldEnum = (typeof QuotationScalarFieldEnum)[keyof typeof QuotationScalarFieldEnum]
+
+
+export const QuotationItemScalarFieldEnum = {
+  id: 'id',
+  quotationId: 'quotationId',
+  rfqItemId: 'rfqItemId',
+  unitPrice: 'unitPrice',
+  quantity: 'quantity',
+  deliveryDays: 'deliveryDays',
+  total: 'total'
+} as const
+
+export type QuotationItemScalarFieldEnum = (typeof QuotationItemScalarFieldEnum)[keyof typeof QuotationItemScalarFieldEnum]
+
+
+export const ApprovalScalarFieldEnum = {
+  id: 'id',
+  rfqId: 'rfqId',
+  quotationId: 'quotationId',
+  requestedById: 'requestedById',
+  approverId: 'approverId',
+  status: 'status',
+  remarks: 'remarks',
+  approvedAt: 'approvedAt',
+  rejectedAt: 'rejectedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ApprovalScalarFieldEnum = (typeof ApprovalScalarFieldEnum)[keyof typeof ApprovalScalarFieldEnum]
+
+
+export const PurchaseOrderScalarFieldEnum = {
+  id: 'id',
+  poNumber: 'poNumber',
+  rfqId: 'rfqId',
+  quotationId: 'quotationId',
+  vendorId: 'vendorId',
+  approvedById: 'approvedById',
+  status: 'status',
+  issueDate: 'issueDate',
+  deliveryDate: 'deliveryDate',
+  subtotal: 'subtotal',
+  gstPercent: 'gstPercent',
+  grandTotal: 'grandTotal',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PurchaseOrderScalarFieldEnum = (typeof PurchaseOrderScalarFieldEnum)[keyof typeof PurchaseOrderScalarFieldEnum]
+
+
+export const PurchaseOrderItemScalarFieldEnum = {
+  id: 'id',
+  purchaseOrderId: 'purchaseOrderId',
+  itemName: 'itemName',
+  quantity: 'quantity',
+  unit: 'unit',
+  unitPrice: 'unitPrice',
+  total: 'total'
+} as const
+
+export type PurchaseOrderItemScalarFieldEnum = (typeof PurchaseOrderItemScalarFieldEnum)[keyof typeof PurchaseOrderItemScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -47,3 +47,48 @@ export type Notification = Prisma.NotificationModel
  * 
  */
 export type ActivityLog = Prisma.ActivityLogModel
+/**
+ * Model RFQ
+ * 
+ */
+export type RFQ = Prisma.RFQModel
+/**
+ * Model RFQItem
+ * 
+ */
+export type RFQItem = Prisma.RFQItemModel
+/**
+ * Model RFQInvitation
+ * 
+ */
+export type RFQInvitation = Prisma.RFQInvitationModel
+/**
+ * Model RFQAttachment
+ * 
+ */
+export type RFQAttachment = Prisma.RFQAttachmentModel
+/**
+ * Model Quotation
+ * 
+ */
+export type Quotation = Prisma.QuotationModel
+/**
+ * Model QuotationItem
+ * 
+ */
+export type QuotationItem = Prisma.QuotationItemModel
+/**
+ * Model Approval
+ * 
+ */
+export type Approval = Prisma.ApprovalModel
+/**
+ * Model PurchaseOrder
+ * 
+ */
+export type PurchaseOrder = Prisma.PurchaseOrderModel
+/**
+ * Model PurchaseOrderItem
+ * 
+ */
+export type PurchaseOrderItem = Prisma.PurchaseOrderItemModel

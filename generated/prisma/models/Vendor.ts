@@ -27,11 +27,11 @@ export type AggregateVendor = {
 }
 
 export type VendorAvgAggregateOutputType = {
-  rating: number | null
+  rating: runtime.Decimal | null
 }
 
 export type VendorSumAggregateOutputType = {
-  rating: number | null
+  rating: runtime.Decimal | null
 }
 
 export type VendorMinAggregateOutputType = {
@@ -47,7 +47,7 @@ export type VendorMinAggregateOutputType = {
   country: string | null
   postalCode: string | null
   status: $Enums.VendorStatus | null
-  rating: number | null
+  rating: runtime.Decimal | null
   isActive: boolean | null
   notes: string | null
   userId: string | null
@@ -70,7 +70,7 @@ export type VendorMaxAggregateOutputType = {
   country: string | null
   postalCode: string | null
   status: $Enums.VendorStatus | null
-  rating: number | null
+  rating: runtime.Decimal | null
   isActive: boolean | null
   notes: string | null
   userId: string | null
@@ -282,7 +282,7 @@ export type VendorGroupByOutputType = {
   country: string | null
   postalCode: string | null
   status: $Enums.VendorStatus
-  rating: number
+  rating: runtime.Decimal | null
   isActive: boolean
   notes: string | null
   userId: string | null
@@ -328,7 +328,7 @@ export type VendorWhereInput = {
   country?: Prisma.StringNullableFilter<"Vendor"> | string | null
   postalCode?: Prisma.StringNullableFilter<"Vendor"> | string | null
   status?: Prisma.EnumVendorStatusFilter<"Vendor"> | $Enums.VendorStatus
-  rating?: Prisma.FloatFilter<"Vendor"> | number
+  rating?: Prisma.DecimalNullableFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFilter<"Vendor"> | boolean
   notes?: Prisma.StringNullableFilter<"Vendor"> | string | null
   userId?: Prisma.StringNullableFilter<"Vendor"> | string | null
@@ -339,6 +339,9 @@ export type VendorWhereInput = {
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
   category?: Prisma.XOR<Prisma.VendorCategoryNullableScalarRelationFilter, Prisma.VendorCategoryWhereInput> | null
+  invitations?: Prisma.RFQInvitationListRelationFilter
+  quotations?: Prisma.QuotationListRelationFilter
+  purchaseOrders?: Prisma.PurchaseOrderListRelationFilter
 }
 
 export type VendorOrderByWithRelationInput = {
@@ -354,7 +357,7 @@ export type VendorOrderByWithRelationInput = {
   country?: Prisma.SortOrderInput | Prisma.SortOrder
   postalCode?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
-  rating?: Prisma.SortOrder
+  rating?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   userId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -365,6 +368,9 @@ export type VendorOrderByWithRelationInput = {
   user?: Prisma.UserOrderByWithRelationInput
   organization?: Prisma.OrganizationOrderByWithRelationInput
   category?: Prisma.VendorCategoryOrderByWithRelationInput
+  invitations?: Prisma.RFQInvitationOrderByRelationAggregateInput
+  quotations?: Prisma.QuotationOrderByRelationAggregateInput
+  purchaseOrders?: Prisma.PurchaseOrderOrderByRelationAggregateInput
 }
 
 export type VendorWhereUniqueInput = Prisma.AtLeast<{
@@ -384,7 +390,7 @@ export type VendorWhereUniqueInput = Prisma.AtLeast<{
   country?: Prisma.StringNullableFilter<"Vendor"> | string | null
   postalCode?: Prisma.StringNullableFilter<"Vendor"> | string | null
   status?: Prisma.EnumVendorStatusFilter<"Vendor"> | $Enums.VendorStatus
-  rating?: Prisma.FloatFilter<"Vendor"> | number
+  rating?: Prisma.DecimalNullableFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFilter<"Vendor"> | boolean
   notes?: Prisma.StringNullableFilter<"Vendor"> | string | null
   organizationId?: Prisma.StringNullableFilter<"Vendor"> | string | null
@@ -394,6 +400,9 @@ export type VendorWhereUniqueInput = Prisma.AtLeast<{
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
   category?: Prisma.XOR<Prisma.VendorCategoryNullableScalarRelationFilter, Prisma.VendorCategoryWhereInput> | null
+  invitations?: Prisma.RFQInvitationListRelationFilter
+  quotations?: Prisma.QuotationListRelationFilter
+  purchaseOrders?: Prisma.PurchaseOrderListRelationFilter
 }, "id" | "contactEmail" | "userId">
 
 export type VendorOrderByWithAggregationInput = {
@@ -409,7 +418,7 @@ export type VendorOrderByWithAggregationInput = {
   country?: Prisma.SortOrderInput | Prisma.SortOrder
   postalCode?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
-  rating?: Prisma.SortOrder
+  rating?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   userId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -440,7 +449,7 @@ export type VendorScalarWhereWithAggregatesInput = {
   country?: Prisma.StringNullableWithAggregatesFilter<"Vendor"> | string | null
   postalCode?: Prisma.StringNullableWithAggregatesFilter<"Vendor"> | string | null
   status?: Prisma.EnumVendorStatusWithAggregatesFilter<"Vendor"> | $Enums.VendorStatus
-  rating?: Prisma.FloatWithAggregatesFilter<"Vendor"> | number
+  rating?: Prisma.DecimalNullableWithAggregatesFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Vendor"> | boolean
   notes?: Prisma.StringNullableWithAggregatesFilter<"Vendor"> | string | null
   userId?: Prisma.StringNullableWithAggregatesFilter<"Vendor"> | string | null
@@ -463,7 +472,7 @@ export type VendorCreateInput = {
   country?: string | null
   postalCode?: string | null
   status?: $Enums.VendorStatus
-  rating?: number
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: boolean
   notes?: string | null
   createdAt?: Date | string
@@ -471,6 +480,9 @@ export type VendorCreateInput = {
   user?: Prisma.UserCreateNestedOneWithoutVendorInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutVendorsInput
   category?: Prisma.VendorCategoryCreateNestedOneWithoutVendorsInput
+  invitations?: Prisma.RFQInvitationCreateNestedManyWithoutVendorInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateInput = {
@@ -486,7 +498,7 @@ export type VendorUncheckedCreateInput = {
   country?: string | null
   postalCode?: string | null
   status?: $Enums.VendorStatus
-  rating?: number
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: boolean
   notes?: string | null
   userId?: string | null
@@ -494,6 +506,9 @@ export type VendorUncheckedCreateInput = {
   categoryId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  invitations?: Prisma.RFQInvitationUncheckedCreateNestedManyWithoutVendorInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUpdateInput = {
@@ -509,7 +524,7 @@ export type VendorUpdateInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -517,6 +532,9 @@ export type VendorUpdateInput = {
   user?: Prisma.UserUpdateOneWithoutVendorNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutVendorsNestedInput
   category?: Prisma.VendorCategoryUpdateOneWithoutVendorsNestedInput
+  invitations?: Prisma.RFQInvitationUpdateManyWithoutVendorNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateInput = {
@@ -532,7 +550,7 @@ export type VendorUncheckedUpdateInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -540,6 +558,9 @@ export type VendorUncheckedUpdateInput = {
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitations?: Prisma.RFQInvitationUncheckedUpdateManyWithoutVendorNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateManyInput = {
@@ -555,7 +576,7 @@ export type VendorCreateManyInput = {
   country?: string | null
   postalCode?: string | null
   status?: $Enums.VendorStatus
-  rating?: number
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: boolean
   notes?: string | null
   userId?: string | null
@@ -578,7 +599,7 @@ export type VendorUpdateManyMutationInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -598,7 +619,7 @@ export type VendorUncheckedUpdateManyInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -698,6 +719,11 @@ export type VendorMinOrderByAggregateInput = {
 
 export type VendorSumOrderByAggregateInput = {
   rating?: Prisma.SortOrder
+}
+
+export type VendorScalarRelationFilter = {
+  is?: Prisma.VendorWhereInput
+  isNot?: Prisma.VendorWhereInput
 }
 
 export type VendorCreateNestedManyWithoutOrganizationInput = {
@@ -820,12 +846,54 @@ export type EnumVendorStatusFieldUpdateOperationsInput = {
   set?: $Enums.VendorStatus
 }
 
-export type FloatFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type VendorCreateNestedOneWithoutInvitationsInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutInvitationsInput, Prisma.VendorUncheckedCreateWithoutInvitationsInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutInvitationsInput
+  connect?: Prisma.VendorWhereUniqueInput
+}
+
+export type VendorUpdateOneRequiredWithoutInvitationsNestedInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutInvitationsInput, Prisma.VendorUncheckedCreateWithoutInvitationsInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutInvitationsInput
+  upsert?: Prisma.VendorUpsertWithoutInvitationsInput
+  connect?: Prisma.VendorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VendorUpdateToOneWithWhereWithoutInvitationsInput, Prisma.VendorUpdateWithoutInvitationsInput>, Prisma.VendorUncheckedUpdateWithoutInvitationsInput>
+}
+
+export type VendorCreateNestedOneWithoutQuotationsInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutQuotationsInput, Prisma.VendorUncheckedCreateWithoutQuotationsInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutQuotationsInput
+  connect?: Prisma.VendorWhereUniqueInput
+}
+
+export type VendorUpdateOneRequiredWithoutQuotationsNestedInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutQuotationsInput, Prisma.VendorUncheckedCreateWithoutQuotationsInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutQuotationsInput
+  upsert?: Prisma.VendorUpsertWithoutQuotationsInput
+  connect?: Prisma.VendorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VendorUpdateToOneWithWhereWithoutQuotationsInput, Prisma.VendorUpdateWithoutQuotationsInput>, Prisma.VendorUncheckedUpdateWithoutQuotationsInput>
+}
+
+export type VendorCreateNestedOneWithoutPurchaseOrdersInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutPurchaseOrdersInput, Prisma.VendorUncheckedCreateWithoutPurchaseOrdersInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutPurchaseOrdersInput
+  connect?: Prisma.VendorWhereUniqueInput
+}
+
+export type VendorUpdateOneRequiredWithoutPurchaseOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutPurchaseOrdersInput, Prisma.VendorUncheckedCreateWithoutPurchaseOrdersInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutPurchaseOrdersInput
+  upsert?: Prisma.VendorUpsertWithoutPurchaseOrdersInput
+  connect?: Prisma.VendorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VendorUpdateToOneWithWhereWithoutPurchaseOrdersInput, Prisma.VendorUpdateWithoutPurchaseOrdersInput>, Prisma.VendorUncheckedUpdateWithoutPurchaseOrdersInput>
 }
 
 export type VendorCreateWithoutOrganizationInput = {
@@ -841,13 +909,16 @@ export type VendorCreateWithoutOrganizationInput = {
   country?: string | null
   postalCode?: string | null
   status?: $Enums.VendorStatus
-  rating?: number
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: boolean
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutVendorInput
   category?: Prisma.VendorCategoryCreateNestedOneWithoutVendorsInput
+  invitations?: Prisma.RFQInvitationCreateNestedManyWithoutVendorInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutOrganizationInput = {
@@ -863,13 +934,16 @@ export type VendorUncheckedCreateWithoutOrganizationInput = {
   country?: string | null
   postalCode?: string | null
   status?: $Enums.VendorStatus
-  rating?: number
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: boolean
   notes?: string | null
   userId?: string | null
   categoryId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  invitations?: Prisma.RFQInvitationUncheckedCreateNestedManyWithoutVendorInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutOrganizationInput = {
@@ -914,7 +988,7 @@ export type VendorScalarWhereInput = {
   country?: Prisma.StringNullableFilter<"Vendor"> | string | null
   postalCode?: Prisma.StringNullableFilter<"Vendor"> | string | null
   status?: Prisma.EnumVendorStatusFilter<"Vendor"> | $Enums.VendorStatus
-  rating?: Prisma.FloatFilter<"Vendor"> | number
+  rating?: Prisma.DecimalNullableFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFilter<"Vendor"> | boolean
   notes?: Prisma.StringNullableFilter<"Vendor"> | string | null
   userId?: Prisma.StringNullableFilter<"Vendor"> | string | null
@@ -937,13 +1011,16 @@ export type VendorCreateWithoutUserInput = {
   country?: string | null
   postalCode?: string | null
   status?: $Enums.VendorStatus
-  rating?: number
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: boolean
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization?: Prisma.OrganizationCreateNestedOneWithoutVendorsInput
   category?: Prisma.VendorCategoryCreateNestedOneWithoutVendorsInput
+  invitations?: Prisma.RFQInvitationCreateNestedManyWithoutVendorInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutUserInput = {
@@ -959,13 +1036,16 @@ export type VendorUncheckedCreateWithoutUserInput = {
   country?: string | null
   postalCode?: string | null
   status?: $Enums.VendorStatus
-  rating?: number
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: boolean
   notes?: string | null
   organizationId?: string | null
   categoryId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  invitations?: Prisma.RFQInvitationUncheckedCreateNestedManyWithoutVendorInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutUserInput = {
@@ -997,13 +1077,16 @@ export type VendorUpdateWithoutUserInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneWithoutVendorsNestedInput
   category?: Prisma.VendorCategoryUpdateOneWithoutVendorsNestedInput
+  invitations?: Prisma.RFQInvitationUpdateManyWithoutVendorNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutUserInput = {
@@ -1019,13 +1102,16 @@ export type VendorUncheckedUpdateWithoutUserInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitations?: Prisma.RFQInvitationUncheckedUpdateManyWithoutVendorNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutCategoryInput = {
@@ -1041,13 +1127,16 @@ export type VendorCreateWithoutCategoryInput = {
   country?: string | null
   postalCode?: string | null
   status?: $Enums.VendorStatus
-  rating?: number
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: boolean
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutVendorInput
   organization?: Prisma.OrganizationCreateNestedOneWithoutVendorsInput
+  invitations?: Prisma.RFQInvitationCreateNestedManyWithoutVendorInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutVendorInput
 }
 
 export type VendorUncheckedCreateWithoutCategoryInput = {
@@ -1063,13 +1152,16 @@ export type VendorUncheckedCreateWithoutCategoryInput = {
   country?: string | null
   postalCode?: string | null
   status?: $Enums.VendorStatus
-  rating?: number
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: boolean
   notes?: string | null
   userId?: string | null
   organizationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  invitations?: Prisma.RFQInvitationUncheckedCreateNestedManyWithoutVendorInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutCategoryInput = {
@@ -1098,6 +1190,354 @@ export type VendorUpdateManyWithWhereWithoutCategoryInput = {
   data: Prisma.XOR<Prisma.VendorUpdateManyMutationInput, Prisma.VendorUncheckedUpdateManyWithoutCategoryInput>
 }
 
+export type VendorCreateWithoutInvitationsInput = {
+  id?: string
+  companyName: string
+  gstNumber?: string | null
+  contactName: string
+  contactEmail: string
+  contactPhone?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string | null
+  postalCode?: string | null
+  status?: $Enums.VendorStatus
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isActive?: boolean
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user?: Prisma.UserCreateNestedOneWithoutVendorInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutVendorsInput
+  category?: Prisma.VendorCategoryCreateNestedOneWithoutVendorsInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutVendorInput
+}
+
+export type VendorUncheckedCreateWithoutInvitationsInput = {
+  id?: string
+  companyName: string
+  gstNumber?: string | null
+  contactName: string
+  contactEmail: string
+  contactPhone?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string | null
+  postalCode?: string | null
+  status?: $Enums.VendorStatus
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isActive?: boolean
+  notes?: string | null
+  userId?: string | null
+  organizationId?: string | null
+  categoryId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutVendorInput
+}
+
+export type VendorCreateOrConnectWithoutInvitationsInput = {
+  where: Prisma.VendorWhereUniqueInput
+  create: Prisma.XOR<Prisma.VendorCreateWithoutInvitationsInput, Prisma.VendorUncheckedCreateWithoutInvitationsInput>
+}
+
+export type VendorUpsertWithoutInvitationsInput = {
+  update: Prisma.XOR<Prisma.VendorUpdateWithoutInvitationsInput, Prisma.VendorUncheckedUpdateWithoutInvitationsInput>
+  create: Prisma.XOR<Prisma.VendorCreateWithoutInvitationsInput, Prisma.VendorUncheckedCreateWithoutInvitationsInput>
+  where?: Prisma.VendorWhereInput
+}
+
+export type VendorUpdateToOneWithWhereWithoutInvitationsInput = {
+  where?: Prisma.VendorWhereInput
+  data: Prisma.XOR<Prisma.VendorUpdateWithoutInvitationsInput, Prisma.VendorUncheckedUpdateWithoutInvitationsInput>
+}
+
+export type VendorUpdateWithoutInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyName?: Prisma.StringFieldUpdateOperationsInput | string
+  gstNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  contactEmail?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneWithoutVendorNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutVendorsNestedInput
+  category?: Prisma.VendorCategoryUpdateOneWithoutVendorsNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutVendorNestedInput
+}
+
+export type VendorUncheckedUpdateWithoutInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyName?: Prisma.StringFieldUpdateOperationsInput | string
+  gstNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  contactEmail?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutVendorNestedInput
+}
+
+export type VendorCreateWithoutQuotationsInput = {
+  id?: string
+  companyName: string
+  gstNumber?: string | null
+  contactName: string
+  contactEmail: string
+  contactPhone?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string | null
+  postalCode?: string | null
+  status?: $Enums.VendorStatus
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isActive?: boolean
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user?: Prisma.UserCreateNestedOneWithoutVendorInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutVendorsInput
+  category?: Prisma.VendorCategoryCreateNestedOneWithoutVendorsInput
+  invitations?: Prisma.RFQInvitationCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutVendorInput
+}
+
+export type VendorUncheckedCreateWithoutQuotationsInput = {
+  id?: string
+  companyName: string
+  gstNumber?: string | null
+  contactName: string
+  contactEmail: string
+  contactPhone?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string | null
+  postalCode?: string | null
+  status?: $Enums.VendorStatus
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isActive?: boolean
+  notes?: string | null
+  userId?: string | null
+  organizationId?: string | null
+  categoryId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitations?: Prisma.RFQInvitationUncheckedCreateNestedManyWithoutVendorInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutVendorInput
+}
+
+export type VendorCreateOrConnectWithoutQuotationsInput = {
+  where: Prisma.VendorWhereUniqueInput
+  create: Prisma.XOR<Prisma.VendorCreateWithoutQuotationsInput, Prisma.VendorUncheckedCreateWithoutQuotationsInput>
+}
+
+export type VendorUpsertWithoutQuotationsInput = {
+  update: Prisma.XOR<Prisma.VendorUpdateWithoutQuotationsInput, Prisma.VendorUncheckedUpdateWithoutQuotationsInput>
+  create: Prisma.XOR<Prisma.VendorCreateWithoutQuotationsInput, Prisma.VendorUncheckedCreateWithoutQuotationsInput>
+  where?: Prisma.VendorWhereInput
+}
+
+export type VendorUpdateToOneWithWhereWithoutQuotationsInput = {
+  where?: Prisma.VendorWhereInput
+  data: Prisma.XOR<Prisma.VendorUpdateWithoutQuotationsInput, Prisma.VendorUncheckedUpdateWithoutQuotationsInput>
+}
+
+export type VendorUpdateWithoutQuotationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyName?: Prisma.StringFieldUpdateOperationsInput | string
+  gstNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  contactEmail?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneWithoutVendorNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutVendorsNestedInput
+  category?: Prisma.VendorCategoryUpdateOneWithoutVendorsNestedInput
+  invitations?: Prisma.RFQInvitationUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutVendorNestedInput
+}
+
+export type VendorUncheckedUpdateWithoutQuotationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyName?: Prisma.StringFieldUpdateOperationsInput | string
+  gstNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  contactEmail?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitations?: Prisma.RFQInvitationUncheckedUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutVendorNestedInput
+}
+
+export type VendorCreateWithoutPurchaseOrdersInput = {
+  id?: string
+  companyName: string
+  gstNumber?: string | null
+  contactName: string
+  contactEmail: string
+  contactPhone?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string | null
+  postalCode?: string | null
+  status?: $Enums.VendorStatus
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isActive?: boolean
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user?: Prisma.UserCreateNestedOneWithoutVendorInput
+  organization?: Prisma.OrganizationCreateNestedOneWithoutVendorsInput
+  category?: Prisma.VendorCategoryCreateNestedOneWithoutVendorsInput
+  invitations?: Prisma.RFQInvitationCreateNestedManyWithoutVendorInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutVendorInput
+}
+
+export type VendorUncheckedCreateWithoutPurchaseOrdersInput = {
+  id?: string
+  companyName: string
+  gstNumber?: string | null
+  contactName: string
+  contactEmail: string
+  contactPhone?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string | null
+  postalCode?: string | null
+  status?: $Enums.VendorStatus
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isActive?: boolean
+  notes?: string | null
+  userId?: string | null
+  organizationId?: string | null
+  categoryId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitations?: Prisma.RFQInvitationUncheckedCreateNestedManyWithoutVendorInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutVendorInput
+}
+
+export type VendorCreateOrConnectWithoutPurchaseOrdersInput = {
+  where: Prisma.VendorWhereUniqueInput
+  create: Prisma.XOR<Prisma.VendorCreateWithoutPurchaseOrdersInput, Prisma.VendorUncheckedCreateWithoutPurchaseOrdersInput>
+}
+
+export type VendorUpsertWithoutPurchaseOrdersInput = {
+  update: Prisma.XOR<Prisma.VendorUpdateWithoutPurchaseOrdersInput, Prisma.VendorUncheckedUpdateWithoutPurchaseOrdersInput>
+  create: Prisma.XOR<Prisma.VendorCreateWithoutPurchaseOrdersInput, Prisma.VendorUncheckedCreateWithoutPurchaseOrdersInput>
+  where?: Prisma.VendorWhereInput
+}
+
+export type VendorUpdateToOneWithWhereWithoutPurchaseOrdersInput = {
+  where?: Prisma.VendorWhereInput
+  data: Prisma.XOR<Prisma.VendorUpdateWithoutPurchaseOrdersInput, Prisma.VendorUncheckedUpdateWithoutPurchaseOrdersInput>
+}
+
+export type VendorUpdateWithoutPurchaseOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyName?: Prisma.StringFieldUpdateOperationsInput | string
+  gstNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  contactEmail?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneWithoutVendorNestedInput
+  organization?: Prisma.OrganizationUpdateOneWithoutVendorsNestedInput
+  category?: Prisma.VendorCategoryUpdateOneWithoutVendorsNestedInput
+  invitations?: Prisma.RFQInvitationUpdateManyWithoutVendorNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutVendorNestedInput
+}
+
+export type VendorUncheckedUpdateWithoutPurchaseOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyName?: Prisma.StringFieldUpdateOperationsInput | string
+  gstNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  contactEmail?: Prisma.StringFieldUpdateOperationsInput | string
+  contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitations?: Prisma.RFQInvitationUncheckedUpdateManyWithoutVendorNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutVendorNestedInput
+}
+
 export type VendorCreateManyOrganizationInput = {
   id?: string
   companyName: string
@@ -1111,7 +1551,7 @@ export type VendorCreateManyOrganizationInput = {
   country?: string | null
   postalCode?: string | null
   status?: $Enums.VendorStatus
-  rating?: number
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: boolean
   notes?: string | null
   userId?: string | null
@@ -1133,13 +1573,16 @@ export type VendorUpdateWithoutOrganizationInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutVendorNestedInput
   category?: Prisma.VendorCategoryUpdateOneWithoutVendorsNestedInput
+  invitations?: Prisma.RFQInvitationUpdateManyWithoutVendorNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutOrganizationInput = {
@@ -1155,13 +1598,16 @@ export type VendorUncheckedUpdateWithoutOrganizationInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitations?: Prisma.RFQInvitationUncheckedUpdateManyWithoutVendorNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateManyWithoutOrganizationInput = {
@@ -1177,7 +1623,7 @@ export type VendorUncheckedUpdateManyWithoutOrganizationInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1199,7 +1645,7 @@ export type VendorCreateManyCategoryInput = {
   country?: string | null
   postalCode?: string | null
   status?: $Enums.VendorStatus
-  rating?: number
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: boolean
   notes?: string | null
   userId?: string | null
@@ -1221,13 +1667,16 @@ export type VendorUpdateWithoutCategoryInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutVendorNestedInput
   organization?: Prisma.OrganizationUpdateOneWithoutVendorsNestedInput
+  invitations?: Prisma.RFQInvitationUpdateManyWithoutVendorNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutCategoryInput = {
@@ -1243,13 +1692,16 @@ export type VendorUncheckedUpdateWithoutCategoryInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitations?: Prisma.RFQInvitationUncheckedUpdateManyWithoutVendorNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutVendorNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorUncheckedUpdateManyWithoutCategoryInput = {
@@ -1265,7 +1717,7 @@ export type VendorUncheckedUpdateManyWithoutCategoryInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumVendorStatusFieldUpdateOperationsInput | $Enums.VendorStatus
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1274,6 +1726,53 @@ export type VendorUncheckedUpdateManyWithoutCategoryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type VendorCountOutputType
+ */
+
+export type VendorCountOutputType = {
+  invitations: number
+  quotations: number
+  purchaseOrders: number
+}
+
+export type VendorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  invitations?: boolean | VendorCountOutputTypeCountInvitationsArgs
+  quotations?: boolean | VendorCountOutputTypeCountQuotationsArgs
+  purchaseOrders?: boolean | VendorCountOutputTypeCountPurchaseOrdersArgs
+}
+
+/**
+ * VendorCountOutputType without action
+ */
+export type VendorCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VendorCountOutputType
+   */
+  select?: Prisma.VendorCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * VendorCountOutputType without action
+ */
+export type VendorCountOutputTypeCountInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RFQInvitationWhereInput
+}
+
+/**
+ * VendorCountOutputType without action
+ */
+export type VendorCountOutputTypeCountQuotationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuotationWhereInput
+}
+
+/**
+ * VendorCountOutputType without action
+ */
+export type VendorCountOutputTypeCountPurchaseOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PurchaseOrderWhereInput
+}
 
 
 export type VendorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1300,6 +1799,10 @@ export type VendorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   user?: boolean | Prisma.Vendor$userArgs<ExtArgs>
   organization?: boolean | Prisma.Vendor$organizationArgs<ExtArgs>
   category?: boolean | Prisma.Vendor$categoryArgs<ExtArgs>
+  invitations?: boolean | Prisma.Vendor$invitationsArgs<ExtArgs>
+  quotations?: boolean | Prisma.Vendor$quotationsArgs<ExtArgs>
+  purchaseOrders?: boolean | Prisma.Vendor$purchaseOrdersArgs<ExtArgs>
+  _count?: boolean | Prisma.VendorCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["vendor"]>
 
 export type VendorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1382,6 +1885,10 @@ export type VendorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   user?: boolean | Prisma.Vendor$userArgs<ExtArgs>
   organization?: boolean | Prisma.Vendor$organizationArgs<ExtArgs>
   category?: boolean | Prisma.Vendor$categoryArgs<ExtArgs>
+  invitations?: boolean | Prisma.Vendor$invitationsArgs<ExtArgs>
+  quotations?: boolean | Prisma.Vendor$quotationsArgs<ExtArgs>
+  purchaseOrders?: boolean | Prisma.Vendor$purchaseOrdersArgs<ExtArgs>
+  _count?: boolean | Prisma.VendorCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type VendorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.Vendor$userArgs<ExtArgs>
@@ -1400,6 +1907,9 @@ export type $VendorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     user: Prisma.$UserPayload<ExtArgs> | null
     organization: Prisma.$OrganizationPayload<ExtArgs> | null
     category: Prisma.$VendorCategoryPayload<ExtArgs> | null
+    invitations: Prisma.$RFQInvitationPayload<ExtArgs>[]
+    quotations: Prisma.$QuotationPayload<ExtArgs>[]
+    purchaseOrders: Prisma.$PurchaseOrderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1414,7 +1924,7 @@ export type $VendorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     country: string | null
     postalCode: string | null
     status: $Enums.VendorStatus
-    rating: number
+    rating: runtime.Decimal | null
     isActive: boolean
     notes: string | null
     userId: string | null
@@ -1819,6 +2329,9 @@ export interface Prisma__VendorClient<T, Null = never, ExtArgs extends runtime.T
   user<T extends Prisma.Vendor$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   organization<T extends Prisma.Vendor$organizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$organizationArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   category<T extends Prisma.Vendor$categoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$categoryArgs<ExtArgs>>): Prisma.Prisma__VendorCategoryClient<runtime.Types.Result.GetResult<Prisma.$VendorCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  invitations<T extends Prisma.Vendor$invitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RFQInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  quotations<T extends Prisma.Vendor$quotationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$quotationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  purchaseOrders<T extends Prisma.Vendor$purchaseOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$purchaseOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PurchaseOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1860,7 +2373,7 @@ export interface VendorFieldRefs {
   readonly country: Prisma.FieldRef<"Vendor", 'String'>
   readonly postalCode: Prisma.FieldRef<"Vendor", 'String'>
   readonly status: Prisma.FieldRef<"Vendor", 'VendorStatus'>
-  readonly rating: Prisma.FieldRef<"Vendor", 'Float'>
+  readonly rating: Prisma.FieldRef<"Vendor", 'Decimal'>
   readonly isActive: Prisma.FieldRef<"Vendor", 'Boolean'>
   readonly notes: Prisma.FieldRef<"Vendor", 'String'>
   readonly userId: Prisma.FieldRef<"Vendor", 'String'>
@@ -2323,6 +2836,78 @@ export type Vendor$categoryArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   include?: Prisma.VendorCategoryInclude<ExtArgs> | null
   where?: Prisma.VendorCategoryWhereInput
+}
+
+/**
+ * Vendor.invitations
+ */
+export type Vendor$invitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RFQInvitation
+   */
+  select?: Prisma.RFQInvitationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RFQInvitation
+   */
+  omit?: Prisma.RFQInvitationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RFQInvitationInclude<ExtArgs> | null
+  where?: Prisma.RFQInvitationWhereInput
+  orderBy?: Prisma.RFQInvitationOrderByWithRelationInput | Prisma.RFQInvitationOrderByWithRelationInput[]
+  cursor?: Prisma.RFQInvitationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RFQInvitationScalarFieldEnum | Prisma.RFQInvitationScalarFieldEnum[]
+}
+
+/**
+ * Vendor.quotations
+ */
+export type Vendor$quotationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Quotation
+   */
+  select?: Prisma.QuotationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Quotation
+   */
+  omit?: Prisma.QuotationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuotationInclude<ExtArgs> | null
+  where?: Prisma.QuotationWhereInput
+  orderBy?: Prisma.QuotationOrderByWithRelationInput | Prisma.QuotationOrderByWithRelationInput[]
+  cursor?: Prisma.QuotationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuotationScalarFieldEnum | Prisma.QuotationScalarFieldEnum[]
+}
+
+/**
+ * Vendor.purchaseOrders
+ */
+export type Vendor$purchaseOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PurchaseOrder
+   */
+  select?: Prisma.PurchaseOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PurchaseOrder
+   */
+  omit?: Prisma.PurchaseOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PurchaseOrderInclude<ExtArgs> | null
+  where?: Prisma.PurchaseOrderWhereInput
+  orderBy?: Prisma.PurchaseOrderOrderByWithRelationInput | Prisma.PurchaseOrderOrderByWithRelationInput[]
+  cursor?: Prisma.PurchaseOrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PurchaseOrderScalarFieldEnum | Prisma.PurchaseOrderScalarFieldEnum[]
 }
 
 /**
