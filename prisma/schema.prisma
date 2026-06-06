@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  PROCUREMENT_OFFICER
+  MANAGER_APPROVER
+  VENDOR
+}
+
+model Organization {
+  id          String   @id @default(cuid())
+  name        String
+  details     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  users       User[]
+}
+
+model User {
+  id             String       @id @default(cuid())
+  firstName      String
+  lastName       String
+  email          String       @unique
+  passwordHash   String
+  phone          String?
+  country        String?
+  additionalInfo String?
+  role           Role         @default(PROCUREMENT_OFFICER)
+  isActive       Boolean      @default(true)
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
