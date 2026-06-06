@@ -753,65 +753,93 @@ export async function sendInvoiceEmail(email, name, invoiceHtml) { ... }
 
 ## 10. Getting Started
 
-### Prerequisites
+You can replicate and run VendorBridge either using Docker (recommended for quick setup) or via traditional local development.
 
+### Option A: Using Docker (Recommended)
+
+**Prerequisites:**
+- **Docker** and **Docker Compose** installed on your machine.
+- **Git**
+
+**Steps:**
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-org/vendorbridge.git
+   cd vendorbridge
+   ```
+2. **Set up environment variables:**
+   ```bash
+   cp .env.example .env
+   # Ensure DATABASE_URL in .env points to the postgres container:
+   # DATABASE_URL="postgresql://user:password@postgres:5432/vendorbridge"
+   ```
+3. **Start the containers:**
+   ```bash
+   docker-compose up -d
+   ```
+   *This will spin up a PostgreSQL database and the Next.js application container.*
+4. **Run database migrations and seeding** (from inside the app container):
+   ```bash
+   docker-compose exec app npx prisma migrate deploy
+   docker-compose exec app npm run db:seed
+   ```
+5. **Open the app:** Visit `http://localhost:3000`
+
+---
+
+### Option B: Local Development
+
+**Prerequisites:**
 - **Node.js** v18+
 - **PostgreSQL** (local or cloud — Neon, Railway, Supabase)
 - **Git**
 
-### Installation
+**Steps:**
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-org/vendorbridge.git
+   cd vendorbridge
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Set up environment variables:**
+   ```bash
+   cp .env.example .env
+   ```
+   *Example `.env` configuration:*
+   ```env
+   # Database
+   DATABASE_URL="postgresql://user:password@localhost:5432/vendorbridge"
 
-```bash
-# 1. Clone the repository
-git clone https://github.com/your-org/vendorbridge.git
-cd vendorbridge
+   # JWT
+   JWT_SECRET="your-super-secret-key-min-32-chars"
+   JWT_EXPIRES_IN="7d"
 
-# 2. Install dependencies
-npm install
+   # SMTP (Nodemailer)
+   SMTP_HOST="smtp.gmail.com"
+   SMTP_PORT="587"
+   SMTP_USER="your@gmail.com"
+   SMTP_PASS="your-google-app-password"
+   SMTP_FROM="VendorBridge <your@gmail.com>"
 
-# 3. Set up environment variables
-cp .env.example .env
-```
-
-### Environment Variables
-
-```env
-# Database
-DATABASE_URL="postgresql://user:password@localhost:5432/vendorbridge"
-
-# JWT
-JWT_SECRET="your-super-secret-key-min-32-chars"
-JWT_EXPIRES_IN="7d"
-
-# SMTP (Nodemailer)
-SMTP_HOST="smtp.gmail.com"
-SMTP_PORT="587"
-SMTP_USER="your@gmail.com"
-SMTP_PASS="your-google-app-password"
-SMTP_FROM="VendorBridge <your@gmail.com>"
-
-# App
-NEXT_PUBLIC_APP_URL="http://localhost:3000"
-```
-
-### Database Setup
-
-```bash
-# Run migrations
-npx prisma migrate dev
-
-# Generate Prisma client
-npx prisma generate
-```
-
-### Running the App
-
-```bash
-# Development server
-npm run dev
-
-# Open http://localhost:3000
-```
+   # App
+   NEXT_PUBLIC_APP_URL="http://localhost:3000"
+   ```
+4. **Database Setup:**
+   ```bash
+   # Run migrations
+   npx prisma migrate dev
+   
+   # Generate Prisma client
+   npx prisma generate
+   ```
+5. **Start the Development server:**
+   ```bash
+   npm run dev
+   ```
+   *Open `http://localhost:3000` in your browser.*
 
 ---
 
