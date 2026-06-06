@@ -266,25 +266,36 @@ VendorBridge uses **JWT-based stateless authentication** with **HTTP-only cookie
 ```mermaid
 sequenceDiagram
     participant Client
-    participant Middleware
-    participant API Route
-    participant JWT Lib
-    participant Database
+    participant API as Auth API
+    participant DB as PostgreSQL
+    participant JWT as JWT Service
+    participant MW as Middleware
+    participant Route as Protected Route
 
-    Client->>API Route: POST /api/auth/login {email, password}
-    API Route->>Database: Find user by email
-    Database-->>API Route: User record (with passwordHash)
-    API Route->>API Route: bcrypt.compare(password, hash)
-    API Route->>JWT Lib: signJWT({ userId, role, email })
-    JWT Lib-->>API Route: Signed JWT token
-    API Route-->>Client: Set-Cookie: vb_session=<token>; HttpOnly; SameSite=Lax
+    %% Login Flow
+    Client->>API: POST /api/auth/login
+    API->>DB: Find user by email
+    DB-->>API: User record + password hash
+    API->>API: Verify password (bcrypt)
 
-    Note over Client,Middleware: Subsequent requests
-    Client->>Middleware: GET /dashboard (Cookie: vb_session=<token>)
-    Middleware->>JWT Lib: verifyJWT(token)
-    JWT Lib-->>Middleware: Decoded payload { userId, role }
-    Middleware->>Middleware: Check role vs path permissions
-    Middleware-->>Client: Allow request (forward with x-user-id, x-user-role headers)
+    API->>JWT: signJWT({userId, email, role})
+    JWT-->>API: Signed token
+
+    API-->>Client: Set HttpOnly Cookie (vb_session)
+
+    %% Protected Request Flow
+    Client->>MW: Request protected page/API
+    MW->>JWT: verifyJWT(vb_session)
+    JWT-->>MW: {userId, email, role}
+
+    MW->>MW: Validate RBAC permissions
+
+    alt Authorized
+        MW->>Route: Forward request
+        Route-->>Client: Protected response
+    else Unauthorized
+        MW-->>Client: Redirect to /login
+    end
 ```
 
 ### Key Files
@@ -976,6 +987,6 @@ As VendorBridge grows to handle high-volume procurement across multiple organiza
 
 <div align="center">
 
-Built with ❤️ using **Next.js 15**, **PostgreSQL**, **Prisma ORM**, and **Nodemailer**
+Built with ❤️ using **Next.js**, **PostgreSQL**, **Prisma ORM**, and **Nodemailer**
 
 </div>
