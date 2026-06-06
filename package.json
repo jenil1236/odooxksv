@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:reset": "npx prisma migrate reset --force",
+    "db:seed": "npx prisma db seed",
+    "db:seed:workflow": "node scripts/seed-workflow.mjs"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.mjs"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",
@@ -36,3 +42,4 @@
     "typescript": "^5"
   }
 }
+

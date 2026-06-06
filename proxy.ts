@@ -49,10 +49,18 @@ export async function proxy(req: NextRequest) {
 
   // Admin-only paths
   if (isAdminPath(pathname) && session.role !== "ADMIN") {
-    if (pathname.startsWith("/api/")) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    // Exceptions for Procurement Officer and Manager
+    const isVendorApi = pathname.startsWith("/api/admin/vendors");
+    const allowedRoles = ["PROCUREMENT_OFFICER", "MANAGER_APPROVER"];
+    
+    if (isVendorApi && allowedRoles.includes(session.role)) {
+      // Allow them
+    } else {
+      if (pathname.startsWith("/api/")) {
+        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      }
+      return NextResponse.redirect(new URL("/dashboard", req.url));
     }
-    return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
   // Forward user info to route handlers via headers
