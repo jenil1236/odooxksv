@@ -26,6 +26,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const normalizedEmail = email.toLowerCase().trim();
+
     // Check if any org users exist — first signup becomes ADMIN
     const userCount = await prisma.user.count({
       where: { role: { not: Role.VENDOR } },
@@ -39,7 +41,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Check email uniqueness
-    const existing = await prisma.user.findUnique({ where: { email } });
+    const existing = await prisma.user.findUnique({ where: { email: normalizedEmail } });
     if (existing) {
       return NextResponse.json(
         { error: "Email already in use" },
@@ -58,7 +60,7 @@ export async function POST(req: NextRequest) {
       data: {
         firstName,
         lastName,
-        email,
+        email: normalizedEmail,
         passwordHash,
         phone: phone ?? null,
         country: country ?? null,

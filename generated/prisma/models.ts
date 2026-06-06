@@ -10,4 +10,8 @@
  */
 export type * from './models/Organization'
 export type * from './models/User'
+export type * from './models/VendorCategory'
+export type * from './models/Vendor'
+export type * from './models/Notification'
+export type * from './models/ActivityLog'
 export type * from './commonInputTypes'

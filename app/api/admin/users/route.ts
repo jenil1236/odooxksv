@@ -22,6 +22,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const normalizedEmail = email.toLowerCase().trim();
+
     const allowedRoles: Role[] = [
       Role.ADMIN,
       Role.PROCUREMENT_OFFICER,
@@ -31,7 +33,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid role" }, { status: 400 });
     }
 
-    const existing = await prisma.user.findUnique({ where: { email } });
+    const existing = await prisma.user.findUnique({ where: { email: normalizedEmail } });
     if (existing) {
       return NextResponse.json(
         { error: "Email already in use" },
@@ -50,7 +52,7 @@ export async function POST(req: NextRequest) {
       data: {
         firstName,
         lastName,
-        email,
+        email: normalizedEmail,
         passwordHash,
         phone: phone ?? null,
         country: country ?? null,
@@ -62,7 +64,7 @@ export async function POST(req: NextRequest) {
 
     // Email credentials to the newly created user
     await sendOrgUserCredentialsEmail(
-      email,
+      normalizedEmail,
       `${firstName} ${lastName}`,
       password
     );

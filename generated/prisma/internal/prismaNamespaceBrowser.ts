@@ -52,7 +52,11 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Organization: 'Organization',
-  User: 'User'
+  User: 'User',
+  VendorCategory: 'VendorCategory',
+  Vendor: 'Vendor',
+  Notification: 'Notification',
+  ActivityLog: 'ActivityLog'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -99,6 +103,66 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const VendorCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VendorCategoryScalarFieldEnum = (typeof VendorCategoryScalarFieldEnum)[keyof typeof VendorCategoryScalarFieldEnum]
+
+
+export const VendorScalarFieldEnum = {
+  id: 'id',
+  companyName: 'companyName',
+  gstNumber: 'gstNumber',
+  contactName: 'contactName',
+  contactEmail: 'contactEmail',
+  contactPhone: 'contactPhone',
+  address: 'address',
+  city: 'city',
+  state: 'state',
+  country: 'country',
+  postalCode: 'postalCode',
+  status: 'status',
+  rating: 'rating',
+  isActive: 'isActive',
+  notes: 'notes',
+  userId: 'userId',
+  organizationId: 'organizationId',
+  categoryId: 'categoryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VendorScalarFieldEnum = (typeof VendorScalarFieldEnum)[keyof typeof VendorScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  message: 'message',
+  read: 'read',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+export const ActivityLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  action: 'action',
+  details: 'details',
+  createdAt: 'createdAt'
+} as const
+
+export type ActivityLogScalarFieldEnum = (typeof ActivityLogScalarFieldEnum)[keyof typeof ActivityLogScalarFieldEnum]
 
 
 export const SortOrder = {

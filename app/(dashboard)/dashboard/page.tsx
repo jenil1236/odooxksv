@@ -15,6 +15,7 @@ async function getStats() {
 export default async function DashboardPage() {
   const session = await getSession();
   if (!session) redirect("/login");
+  if (session.role === Role.VENDOR) redirect("/vendor/profile");
 
   const stats = await getStats();
 

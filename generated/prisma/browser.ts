@@ -27,3 +27,23 @@ export type Organization = Prisma.OrganizationModel
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model VendorCategory
+ * 
+ */
+export type VendorCategory = Prisma.VendorCategoryModel
+/**
+ * Model Vendor
+ * 
+ */
+export type Vendor = Prisma.VendorModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
+/**
+ * Model ActivityLog
+ * 
+ */
+export type ActivityLog = Prisma.ActivityLogModel

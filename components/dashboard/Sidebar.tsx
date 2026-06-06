@@ -17,14 +17,6 @@ const roleLabel: Record<string, string> = {
   VENDOR: "Vendor",
 };
 
-const navItems = [
-  { href: "/dashboard", label: "Dashboard", icon: "grid" },
-];
-const adminItems = [
-  { href: "/admin/users", label: "Users", icon: "users" },
-  { href: "/admin/vendors", label: "Vendors", icon: "briefcase" },
-];
-
 function Icon({ name }: { name: string }) {
   const icons: Record<string, React.ReactNode> = {
     grid: (
@@ -43,6 +35,22 @@ function Icon({ name }: { name: string }) {
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="1" y="5" width="14" height="10" rx="1.5" />
         <path d="M5 5V3.5A1.5 1.5 0 016.5 2h3A1.5 1.5 0 0111 3.5V5" />
+      </svg>
+    ),
+    folder: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14 11.5A1.5 1.5 0 0112.5 13h-9A1.5 1.5 0 012 11.5v-7A1.5 1.5 0 013.5 3h3a1.5 1.5 0 011 .5L9 5h3.5A1.5 1.5 0 0114 6.5v5z" />
+      </svg>
+    ),
+    activity: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M1.5 8.5h3L6 4l2.5 8 1.5-4h4.5" />
+      </svg>
+    ),
+    profile: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 14c0-2.21-1.79-4-4-4s-4 1.79-4 4" />
+        <circle cx="8" cy="5" r="3" />
       </svg>
     ),
     logout: (
@@ -77,6 +85,8 @@ export default function Sidebar() {
     ? `${user.firstName[0]}${user.lastName[0]}`.toUpperCase()
     : "…";
 
+  const isVendor = user?.role === "VENDOR";
+
   return (
     <aside className="sidebar">
       <div className="sidebar-logo">
@@ -91,32 +101,57 @@ export default function Sidebar() {
 
       <p className="sidebar-section-label">Main</p>
       <nav className="sidebar-nav" aria-label="Main navigation">
-        {navItems.map((item) => (
+        {isVendor ? (
           <Link
-            key={item.href}
-            href={item.href}
-            className={`sidebar-link${pathname === item.href ? " active" : ""}`}
+            href="/vendor/profile"
+            className={`sidebar-link${pathname === "/vendor/profile" ? " active" : ""}`}
           >
-            <Icon name={item.icon} />
-            {item.label}
+            <Icon name="profile" />
+            My Profile
           </Link>
-        ))}
+        ) : (
+          <Link
+            href="/dashboard"
+            className={`sidebar-link${pathname === "/dashboard" ? " active" : ""}`}
+          >
+            <Icon name="grid" />
+            Dashboard
+          </Link>
+        )}
       </nav>
 
       {user?.role === "ADMIN" && (
         <>
           <p className="sidebar-section-label" style={{ marginTop: ".75rem" }}>Administration</p>
           <nav className="sidebar-nav" aria-label="Admin navigation">
-            {adminItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`sidebar-link${pathname.startsWith(item.href) ? " active" : ""}`}
-              >
-                <Icon name={item.icon} />
-                {item.label}
-              </Link>
-            ))}
+            <Link
+              href="/admin/users"
+              className={`sidebar-link${pathname.startsWith("/admin/users") ? " active" : ""}`}
+            >
+              <Icon name="users" />
+              Users
+            </Link>
+            <Link
+              href="/admin/vendors"
+              className={`sidebar-link${pathname.startsWith("/admin/vendors") ? " active" : ""}`}
+            >
+              <Icon name="briefcase" />
+              Vendors
+            </Link>
+            <Link
+              href="/admin/categories"
+              className={`sidebar-link${pathname.startsWith("/admin/categories") ? " active" : ""}`}
+            >
+              <Icon name="folder" />
+              Categories
+            </Link>
+            <Link
+              href="/admin/logs"
+              className={`sidebar-link${pathname.startsWith("/admin/logs") ? " active" : ""}`}
+            >
+              <Icon name="activity" />
+              Audit Logs
+            </Link>
           </nav>
         </>
       )}
