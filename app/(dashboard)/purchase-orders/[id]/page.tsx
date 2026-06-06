@@ -1,19 +1,72 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import { format } from "date-fns";
 
+interface POItem {
+  id: string;
+  itemName: string;
+  quantity: number;
+  unit: string;
+  unitPrice: number;
+  total: number;
+}
+
+interface PurchaseOrderDetail {
+  id: string;
+  poNumber: string;
+  status: string;
+  issueDate: string;
+  deliveryDate?: string | null;
+  subtotal: number;
+  gstPercent: number;
+  grandTotal: number;
+  notes?: string | null;
+  createdAt: string;
+  items: POItem[];
+  vendor: {
+    companyName: string;
+    contactName: string;
+    contactEmail: string;
+    contactPhone?: string | null;
+    address?: string | null;
+    city?: string | null;
+    state?: string | null;
+    country?: string | null;
+    postalCode?: string | null;
+    gstNumber?: string | null;
+  };
+  rfq: {
+    id: string;
+    title: string;
+    category: string;
+  };
+  approvedBy: {
+    firstName: string;
+    lastName: string;
+    email: string;
+  };
+}
+
+interface POInvoiceRef {
+  id: string;
+  invoiceNumber: string;
+  purchaseOrderId: string;
+  status: string;
+}
+
 export default function PurchaseOrderDetailPage() {
   const params = useParams();
-  const router = useRouter();
   const poId = params.id as string;
 
-  const [po, setPo] = useState<any>(null);
+  const [po, setPo] = useState<PurchaseOrderDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [userRole, setUserRole] = useState("");
   const [msg, setMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [updating, setUpdating] = useState(false);
+  const [invoice, setInvoice] = useState<POInvoiceRef | null>(null);
+  const [generatingInvoice, setGeneratingInvoice] = useState(false);
 
   useEffect(() => {
     fetch("/api/auth/me")
@@ -27,6 +80,14 @@ export default function PurchaseOrderDetailPage() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
+
+    // Check if invoice already exists
+    fetch(`/api/invoices`)
+      .then(r => r.json())
+      .then(d => {
+        const found = (d.invoices || []).find((inv: POInvoiceRef) => inv.purchaseOrderId === poId);
+        if (found) setInvoice(found);
+      });
   }, [poId]);
 
   const handleStatusChange = async (newStatus: string) => {
@@ -41,14 +102,33 @@ export default function PurchaseOrderDetailPage() {
       const data = await res.json();
       if (res.ok) {
         setMsg({ type: "success", text: "PO Status updated successfully." });
-        setPo({ ...po, status: newStatus });
+        setPo((prev) => prev ? ({ ...prev, status: newStatus }) : null);
       } else {
         setMsg({ type: "error", text: data.error || "Failed to update status." });
       }
-    } catch (err) {
+    } catch {
       setMsg({ type: "error", text: "Network error." });
     } finally {
       setUpdating(false);
+    }
+  };
+
+  const handleGenerateInvoice = async () => {
+    setMsg(null);
+    setGeneratingInvoice(true);
+    try {
+      const res = await fetch(`/api/purchase-orders/${poId}/invoice`, { method: "POST" });
+      const data = await res.json();
+      if (res.ok) {
+        setMsg({ type: "success", text: `Invoice ${data.invoice.invoiceNumber} generated!` });
+        setInvoice(data.invoice);
+      } else {
+        setMsg({ type: "error", text: data.error || "Failed to generate invoice." });
+      }
+    } catch {
+      setMsg({ type: "error", text: "Network error." });
+    } finally {
+      setGeneratingInvoice(false);
     }
   };
 
@@ -85,6 +165,16 @@ export default function PurchaseOrderDetailPage() {
           </p>
         </div>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+          {isProcurement && !invoice && po.status !== "CANCELLED" && (
+            <button className="btn btn-primary btn-sm" onClick={handleGenerateInvoice} disabled={generatingInvoice}>
+              {generatingInvoice ? "Generating…" : "Generate Invoice"}
+            </button>
+          )}
+          {invoice && (
+            <Link href={`/invoices/${invoice.id}`} className="btn btn-outline btn-sm" style={{ color: "var(--blue-600)", borderColor: "var(--blue-200)" }}>
+              📄 View Invoice
+            </Link>
+          )}
           {isProcurement && (
             <select 
               className="form-select" 
@@ -156,7 +246,7 @@ export default function PurchaseOrderDetailPage() {
                 </tr>
               </thead>
               <tbody>
-                {po.items.map((item: any) => (
+                {po.items.map((item) => (
                   <tr key={item.id}>
                     <td style={{ fontWeight: 500 }}>{item.itemName}</td>
                     <td>{item.quantity} {item.unit}</td>

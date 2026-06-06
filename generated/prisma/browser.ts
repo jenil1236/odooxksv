@@ -92,3 +92,13 @@ export type PurchaseOrder = Prisma.PurchaseOrderModel
  * 
  */
 export type PurchaseOrderItem = Prisma.PurchaseOrderItemModel
+/**
+ * Model Invoice
+ * 
+ */
+export type Invoice = Prisma.InvoiceModel
+/**
+ * Model InvoiceItem
+ * 
+ */
+export type InvoiceItem = Prisma.InvoiceItemModel

@@ -238,6 +238,7 @@ export type RFQWhereInput = {
   selectedQuotation?: Prisma.XOR<Prisma.QuotationNullableScalarRelationFilter, Prisma.QuotationWhereInput> | null
   approvals?: Prisma.ApprovalListRelationFilter
   purchaseOrders?: Prisma.PurchaseOrderListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
 }
 
 export type RFQOrderByWithRelationInput = {
@@ -260,6 +261,7 @@ export type RFQOrderByWithRelationInput = {
   selectedQuotation?: Prisma.QuotationOrderByWithRelationInput
   approvals?: Prisma.ApprovalOrderByRelationAggregateInput
   purchaseOrders?: Prisma.PurchaseOrderOrderByRelationAggregateInput
+  invoices?: Prisma.InvoiceOrderByRelationAggregateInput
 }
 
 export type RFQWhereUniqueInput = Prisma.AtLeast<{
@@ -285,6 +287,7 @@ export type RFQWhereUniqueInput = Prisma.AtLeast<{
   selectedQuotation?: Prisma.XOR<Prisma.QuotationNullableScalarRelationFilter, Prisma.QuotationWhereInput> | null
   approvals?: Prisma.ApprovalListRelationFilter
   purchaseOrders?: Prisma.PurchaseOrderListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
 }, "id" | "selectedQuotationId">
 
 export type RFQOrderByWithAggregationInput = {
@@ -339,6 +342,7 @@ export type RFQCreateInput = {
   selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForRfqInput
   approvals?: Prisma.ApprovalCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUncheckedCreateInput = {
@@ -359,6 +363,7 @@ export type RFQUncheckedCreateInput = {
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutRfqInput
   approvals?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUpdateInput = {
@@ -379,6 +384,7 @@ export type RFQUpdateInput = {
   selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForRfqNestedInput
   approvals?: Prisma.ApprovalUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateInput = {
@@ -399,6 +405,7 @@ export type RFQUncheckedUpdateInput = {
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutRfqNestedInput
   approvals?: Prisma.ApprovalUncheckedUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQCreateManyInput = {
@@ -665,6 +672,20 @@ export type RFQUpdateOneRequiredWithoutPurchaseOrdersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RFQUpdateToOneWithWhereWithoutPurchaseOrdersInput, Prisma.RFQUpdateWithoutPurchaseOrdersInput>, Prisma.RFQUncheckedUpdateWithoutPurchaseOrdersInput>
 }
 
+export type RFQCreateNestedOneWithoutInvoicesInput = {
+  create?: Prisma.XOR<Prisma.RFQCreateWithoutInvoicesInput, Prisma.RFQUncheckedCreateWithoutInvoicesInput>
+  connectOrCreate?: Prisma.RFQCreateOrConnectWithoutInvoicesInput
+  connect?: Prisma.RFQWhereUniqueInput
+}
+
+export type RFQUpdateOneRequiredWithoutInvoicesNestedInput = {
+  create?: Prisma.XOR<Prisma.RFQCreateWithoutInvoicesInput, Prisma.RFQUncheckedCreateWithoutInvoicesInput>
+  connectOrCreate?: Prisma.RFQCreateOrConnectWithoutInvoicesInput
+  upsert?: Prisma.RFQUpsertWithoutInvoicesInput
+  connect?: Prisma.RFQWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RFQUpdateToOneWithWhereWithoutInvoicesInput, Prisma.RFQUpdateWithoutInvoicesInput>, Prisma.RFQUncheckedUpdateWithoutInvoicesInput>
+}
+
 export type RFQCreateWithoutCreatedByInput = {
   id?: string
   title: string
@@ -682,6 +703,7 @@ export type RFQCreateWithoutCreatedByInput = {
   selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForRfqInput
   approvals?: Prisma.ApprovalCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUncheckedCreateWithoutCreatedByInput = {
@@ -701,6 +723,7 @@ export type RFQUncheckedCreateWithoutCreatedByInput = {
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutRfqInput
   approvals?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRfqInput
 }
 
 export type RFQCreateOrConnectWithoutCreatedByInput = {
@@ -763,6 +786,7 @@ export type RFQCreateWithoutItemsInput = {
   selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForRfqInput
   approvals?: Prisma.ApprovalCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUncheckedCreateWithoutItemsInput = {
@@ -782,6 +806,7 @@ export type RFQUncheckedCreateWithoutItemsInput = {
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutRfqInput
   approvals?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRfqInput
 }
 
 export type RFQCreateOrConnectWithoutItemsInput = {
@@ -817,6 +842,7 @@ export type RFQUpdateWithoutItemsInput = {
   selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForRfqNestedInput
   approvals?: Prisma.ApprovalUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateWithoutItemsInput = {
@@ -836,6 +862,7 @@ export type RFQUncheckedUpdateWithoutItemsInput = {
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutRfqNestedInput
   approvals?: Prisma.ApprovalUncheckedUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQCreateWithoutInvitationsInput = {
@@ -855,6 +882,7 @@ export type RFQCreateWithoutInvitationsInput = {
   selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForRfqInput
   approvals?: Prisma.ApprovalCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUncheckedCreateWithoutInvitationsInput = {
@@ -874,6 +902,7 @@ export type RFQUncheckedCreateWithoutInvitationsInput = {
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutRfqInput
   approvals?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRfqInput
 }
 
 export type RFQCreateOrConnectWithoutInvitationsInput = {
@@ -909,6 +938,7 @@ export type RFQUpdateWithoutInvitationsInput = {
   selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForRfqNestedInput
   approvals?: Prisma.ApprovalUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateWithoutInvitationsInput = {
@@ -928,6 +958,7 @@ export type RFQUncheckedUpdateWithoutInvitationsInput = {
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutRfqNestedInput
   approvals?: Prisma.ApprovalUncheckedUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQCreateWithoutAttachmentsInput = {
@@ -947,6 +978,7 @@ export type RFQCreateWithoutAttachmentsInput = {
   selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForRfqInput
   approvals?: Prisma.ApprovalCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUncheckedCreateWithoutAttachmentsInput = {
@@ -966,6 +998,7 @@ export type RFQUncheckedCreateWithoutAttachmentsInput = {
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutRfqInput
   approvals?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRfqInput
 }
 
 export type RFQCreateOrConnectWithoutAttachmentsInput = {
@@ -1001,6 +1034,7 @@ export type RFQUpdateWithoutAttachmentsInput = {
   selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForRfqNestedInput
   approvals?: Prisma.ApprovalUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateWithoutAttachmentsInput = {
@@ -1020,6 +1054,7 @@ export type RFQUncheckedUpdateWithoutAttachmentsInput = {
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutRfqNestedInput
   approvals?: Prisma.ApprovalUncheckedUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQCreateWithoutQuotationsInput = {
@@ -1039,6 +1074,7 @@ export type RFQCreateWithoutQuotationsInput = {
   selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForRfqInput
   approvals?: Prisma.ApprovalCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUncheckedCreateWithoutQuotationsInput = {
@@ -1058,6 +1094,7 @@ export type RFQUncheckedCreateWithoutQuotationsInput = {
   attachments?: Prisma.RFQAttachmentUncheckedCreateNestedManyWithoutRfqInput
   approvals?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRfqInput
 }
 
 export type RFQCreateOrConnectWithoutQuotationsInput = {
@@ -1082,6 +1119,7 @@ export type RFQCreateWithoutSelectedQuotationInput = {
   quotations?: Prisma.QuotationCreateNestedManyWithoutRfqInput
   approvals?: Prisma.ApprovalCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUncheckedCreateWithoutSelectedQuotationInput = {
@@ -1101,6 +1139,7 @@ export type RFQUncheckedCreateWithoutSelectedQuotationInput = {
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutRfqInput
   approvals?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRfqInput
 }
 
 export type RFQCreateOrConnectWithoutSelectedQuotationInput = {
@@ -1136,6 +1175,7 @@ export type RFQUpdateWithoutQuotationsInput = {
   selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForRfqNestedInput
   approvals?: Prisma.ApprovalUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateWithoutQuotationsInput = {
@@ -1155,6 +1195,7 @@ export type RFQUncheckedUpdateWithoutQuotationsInput = {
   attachments?: Prisma.RFQAttachmentUncheckedUpdateManyWithoutRfqNestedInput
   approvals?: Prisma.ApprovalUncheckedUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUpsertWithoutSelectedQuotationInput = {
@@ -1185,6 +1226,7 @@ export type RFQUpdateWithoutSelectedQuotationInput = {
   quotations?: Prisma.QuotationUpdateManyWithoutRfqNestedInput
   approvals?: Prisma.ApprovalUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateWithoutSelectedQuotationInput = {
@@ -1204,6 +1246,7 @@ export type RFQUncheckedUpdateWithoutSelectedQuotationInput = {
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutRfqNestedInput
   approvals?: Prisma.ApprovalUncheckedUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQCreateWithoutApprovalsInput = {
@@ -1223,6 +1266,7 @@ export type RFQCreateWithoutApprovalsInput = {
   quotations?: Prisma.QuotationCreateNestedManyWithoutRfqInput
   selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForRfqInput
   purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUncheckedCreateWithoutApprovalsInput = {
@@ -1242,6 +1286,7 @@ export type RFQUncheckedCreateWithoutApprovalsInput = {
   attachments?: Prisma.RFQAttachmentUncheckedCreateNestedManyWithoutRfqInput
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutRfqInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRfqInput
 }
 
 export type RFQCreateOrConnectWithoutApprovalsInput = {
@@ -1277,6 +1322,7 @@ export type RFQUpdateWithoutApprovalsInput = {
   quotations?: Prisma.QuotationUpdateManyWithoutRfqNestedInput
   selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateWithoutApprovalsInput = {
@@ -1296,6 +1342,7 @@ export type RFQUncheckedUpdateWithoutApprovalsInput = {
   attachments?: Prisma.RFQAttachmentUncheckedUpdateManyWithoutRfqNestedInput
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQCreateWithoutPurchaseOrdersInput = {
@@ -1315,6 +1362,7 @@ export type RFQCreateWithoutPurchaseOrdersInput = {
   quotations?: Prisma.QuotationCreateNestedManyWithoutRfqInput
   selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForRfqInput
   approvals?: Prisma.ApprovalCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUncheckedCreateWithoutPurchaseOrdersInput = {
@@ -1334,6 +1382,7 @@ export type RFQUncheckedCreateWithoutPurchaseOrdersInput = {
   attachments?: Prisma.RFQAttachmentUncheckedCreateNestedManyWithoutRfqInput
   quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutRfqInput
   approvals?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRfqInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutRfqInput
 }
 
 export type RFQCreateOrConnectWithoutPurchaseOrdersInput = {
@@ -1369,6 +1418,7 @@ export type RFQUpdateWithoutPurchaseOrdersInput = {
   quotations?: Prisma.QuotationUpdateManyWithoutRfqNestedInput
   selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForRfqNestedInput
   approvals?: Prisma.ApprovalUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateWithoutPurchaseOrdersInput = {
@@ -1388,6 +1438,103 @@ export type RFQUncheckedUpdateWithoutPurchaseOrdersInput = {
   attachments?: Prisma.RFQAttachmentUncheckedUpdateManyWithoutRfqNestedInput
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutRfqNestedInput
   approvals?: Prisma.ApprovalUncheckedUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutRfqNestedInput
+}
+
+export type RFQCreateWithoutInvoicesInput = {
+  id?: string
+  title: string
+  category: string
+  description?: string | null
+  deadline: Date | string
+  status?: $Enums.RFQStatus
+  organizationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdBy: Prisma.UserCreateNestedOneWithoutRfqsInput
+  items?: Prisma.RFQItemCreateNestedManyWithoutRfqInput
+  invitations?: Prisma.RFQInvitationCreateNestedManyWithoutRfqInput
+  attachments?: Prisma.RFQAttachmentCreateNestedManyWithoutRfqInput
+  quotations?: Prisma.QuotationCreateNestedManyWithoutRfqInput
+  selectedQuotation?: Prisma.QuotationCreateNestedOneWithoutSelectedForRfqInput
+  approvals?: Prisma.ApprovalCreateNestedManyWithoutRfqInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutRfqInput
+}
+
+export type RFQUncheckedCreateWithoutInvoicesInput = {
+  id?: string
+  title: string
+  category: string
+  description?: string | null
+  deadline: Date | string
+  status?: $Enums.RFQStatus
+  createdById: string
+  organizationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  selectedQuotationId?: string | null
+  items?: Prisma.RFQItemUncheckedCreateNestedManyWithoutRfqInput
+  invitations?: Prisma.RFQInvitationUncheckedCreateNestedManyWithoutRfqInput
+  attachments?: Prisma.RFQAttachmentUncheckedCreateNestedManyWithoutRfqInput
+  quotations?: Prisma.QuotationUncheckedCreateNestedManyWithoutRfqInput
+  approvals?: Prisma.ApprovalUncheckedCreateNestedManyWithoutRfqInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutRfqInput
+}
+
+export type RFQCreateOrConnectWithoutInvoicesInput = {
+  where: Prisma.RFQWhereUniqueInput
+  create: Prisma.XOR<Prisma.RFQCreateWithoutInvoicesInput, Prisma.RFQUncheckedCreateWithoutInvoicesInput>
+}
+
+export type RFQUpsertWithoutInvoicesInput = {
+  update: Prisma.XOR<Prisma.RFQUpdateWithoutInvoicesInput, Prisma.RFQUncheckedUpdateWithoutInvoicesInput>
+  create: Prisma.XOR<Prisma.RFQCreateWithoutInvoicesInput, Prisma.RFQUncheckedCreateWithoutInvoicesInput>
+  where?: Prisma.RFQWhereInput
+}
+
+export type RFQUpdateToOneWithWhereWithoutInvoicesInput = {
+  where?: Prisma.RFQWhereInput
+  data: Prisma.XOR<Prisma.RFQUpdateWithoutInvoicesInput, Prisma.RFQUncheckedUpdateWithoutInvoicesInput>
+}
+
+export type RFQUpdateWithoutInvoicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumRFQStatusFieldUpdateOperationsInput | $Enums.RFQStatus
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutRfqsNestedInput
+  items?: Prisma.RFQItemUpdateManyWithoutRfqNestedInput
+  invitations?: Prisma.RFQInvitationUpdateManyWithoutRfqNestedInput
+  attachments?: Prisma.RFQAttachmentUpdateManyWithoutRfqNestedInput
+  quotations?: Prisma.QuotationUpdateManyWithoutRfqNestedInput
+  selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForRfqNestedInput
+  approvals?: Prisma.ApprovalUpdateManyWithoutRfqNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutRfqNestedInput
+}
+
+export type RFQUncheckedUpdateWithoutInvoicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumRFQStatusFieldUpdateOperationsInput | $Enums.RFQStatus
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  selectedQuotationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  items?: Prisma.RFQItemUncheckedUpdateManyWithoutRfqNestedInput
+  invitations?: Prisma.RFQInvitationUncheckedUpdateManyWithoutRfqNestedInput
+  attachments?: Prisma.RFQAttachmentUncheckedUpdateManyWithoutRfqNestedInput
+  quotations?: Prisma.QuotationUncheckedUpdateManyWithoutRfqNestedInput
+  approvals?: Prisma.ApprovalUncheckedUpdateManyWithoutRfqNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQCreateManyCreatedByInput = {
@@ -1420,6 +1567,7 @@ export type RFQUpdateWithoutCreatedByInput = {
   selectedQuotation?: Prisma.QuotationUpdateOneWithoutSelectedForRfqNestedInput
   approvals?: Prisma.ApprovalUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateWithoutCreatedByInput = {
@@ -1439,6 +1587,7 @@ export type RFQUncheckedUpdateWithoutCreatedByInput = {
   quotations?: Prisma.QuotationUncheckedUpdateManyWithoutRfqNestedInput
   approvals?: Prisma.ApprovalUncheckedUpdateManyWithoutRfqNestedInput
   purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutRfqNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1466,6 +1615,7 @@ export type RFQCountOutputType = {
   quotations: number
   approvals: number
   purchaseOrders: number
+  invoices: number
 }
 
 export type RFQCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1475,6 +1625,7 @@ export type RFQCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.In
   quotations?: boolean | RFQCountOutputTypeCountQuotationsArgs
   approvals?: boolean | RFQCountOutputTypeCountApprovalsArgs
   purchaseOrders?: boolean | RFQCountOutputTypeCountPurchaseOrdersArgs
+  invoices?: boolean | RFQCountOutputTypeCountInvoicesArgs
 }
 
 /**
@@ -1529,6 +1680,13 @@ export type RFQCountOutputTypeCountPurchaseOrdersArgs<ExtArgs extends runtime.Ty
   where?: Prisma.PurchaseOrderWhereInput
 }
 
+/**
+ * RFQCountOutputType without action
+ */
+export type RFQCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvoiceWhereInput
+}
+
 
 export type RFQSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1550,6 +1708,7 @@ export type RFQSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   selectedQuotation?: boolean | Prisma.RFQ$selectedQuotationArgs<ExtArgs>
   approvals?: boolean | Prisma.RFQ$approvalsArgs<ExtArgs>
   purchaseOrders?: boolean | Prisma.RFQ$purchaseOrdersArgs<ExtArgs>
+  invoices?: boolean | Prisma.RFQ$invoicesArgs<ExtArgs>
   _count?: boolean | Prisma.RFQCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["rFQ"]>
 
@@ -1609,6 +1768,7 @@ export type RFQInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   selectedQuotation?: boolean | Prisma.RFQ$selectedQuotationArgs<ExtArgs>
   approvals?: boolean | Prisma.RFQ$approvalsArgs<ExtArgs>
   purchaseOrders?: boolean | Prisma.RFQ$purchaseOrdersArgs<ExtArgs>
+  invoices?: boolean | Prisma.RFQ$invoicesArgs<ExtArgs>
   _count?: boolean | Prisma.RFQCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RFQIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1631,6 +1791,7 @@ export type $RFQPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     selectedQuotation: Prisma.$QuotationPayload<ExtArgs> | null
     approvals: Prisma.$ApprovalPayload<ExtArgs>[]
     purchaseOrders: Prisma.$PurchaseOrderPayload<ExtArgs>[]
+    invoices: Prisma.$InvoicePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2046,6 +2207,7 @@ export interface Prisma__RFQClient<T, Null = never, ExtArgs extends runtime.Type
   selectedQuotation<T extends Prisma.RFQ$selectedQuotationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RFQ$selectedQuotationArgs<ExtArgs>>): Prisma.Prisma__QuotationClient<runtime.Types.Result.GetResult<Prisma.$QuotationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   approvals<T extends Prisma.RFQ$approvalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RFQ$approvalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApprovalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   purchaseOrders<T extends Prisma.RFQ$purchaseOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RFQ$purchaseOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PurchaseOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invoices<T extends Prisma.RFQ$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RFQ$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2647,6 +2809,30 @@ export type RFQ$purchaseOrdersArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.PurchaseOrderScalarFieldEnum | Prisma.PurchaseOrderScalarFieldEnum[]
+}
+
+/**
+ * RFQ.invoices
+ */
+export type RFQ$invoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Invoice
+   */
+  select?: Prisma.InvoiceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Invoice
+   */
+  omit?: Prisma.InvoiceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InvoiceInclude<ExtArgs> | null
+  where?: Prisma.InvoiceWhereInput
+  orderBy?: Prisma.InvoiceOrderByWithRelationInput | Prisma.InvoiceOrderByWithRelationInput[]
+  cursor?: Prisma.InvoiceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
 }
 
 /**

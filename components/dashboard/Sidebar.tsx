@@ -85,6 +85,19 @@ function Icon({ name }: { name: string }) {
         <path d="M5 9h6M5 11.5h4" />
       </svg>
     ),
+    receipt: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M2 2v12l2-1.5 2 1.5 2-1.5 2 1.5 2-1.5 2 1.5V2z" />
+        <path d="M5 6h6M5 8.5h4" />
+      </svg>
+    ),
+    barChart: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="1" y="9" width="3" height="5" rx="0.5" />
+        <rect x="6" y="5" width="3" height="9" rx="0.5" />
+        <rect x="11" y="2" width="3" height="12" rx="0.5" />
+      </svg>
+    ),
   };
   return <>{icons[name] ?? null}</>;
 }
@@ -174,6 +187,12 @@ export default function Sidebar() {
             </Link>
             <Link href="/purchase-orders" className={`sidebar-link${pathname.startsWith("/purchase-orders") ? " active" : ""}`}>
               <Icon name="fileText" /> Purchase Orders
+            </Link>
+            <Link href="/invoices" className={`sidebar-link${pathname.startsWith("/invoices") ? " active" : ""}`}>
+              <Icon name="receipt" /> Invoices
+            </Link>
+            <Link href="/reports" className={`sidebar-link${pathname.startsWith("/reports") ? " active" : ""}`}>
+              <Icon name="barChart" /> Reports
             </Link>
           </nav>
         </>

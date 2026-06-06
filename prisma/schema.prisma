@@ -50,6 +50,14 @@ enum POStatus {
   CANCELLED
 }
 
+enum InvoiceStatus {
+  DRAFT
+  ISSUED
+  SENT
+  PAID
+  OVERDUE
+}
+
 model Organization {
   id          String   @id @default(cuid())
   name        String
@@ -131,6 +139,7 @@ model Vendor {
   invitations    RFQInvitation[]
   quotations     Quotation[]
   purchaseOrders PurchaseOrder[]
+  invoices       Invoice[]
 }
 
 model Notification {
@@ -178,6 +187,7 @@ model RFQ {
   selectedQuotation   Quotation?      @relation("RFQSelectedQuotation", fields: [selectedQuotationId], references: [id], onDelete: SetNull)
   approvals      Approval[]
   purchaseOrders PurchaseOrder[]
+  invoices       Invoice[]
 }
 
 model RFQItem {
@@ -291,6 +301,7 @@ model PurchaseOrder {
   updatedAt    DateTime          @updatedAt
 
   items        PurchaseOrderItem[]
+  invoice      Invoice?
 }
 
 model PurchaseOrderItem {
@@ -302,4 +313,42 @@ model PurchaseOrderItem {
   unit            String
   unitPrice       Float
   total           Float
+}
+
+// ── Invoice Module ─────────────────────────────────────────────────────────────
+
+model Invoice {
+  id              String        @id @default(cuid())
+  invoiceNumber   String        @unique
+  purchaseOrderId String        @unique
+  purchaseOrder   PurchaseOrder @relation(fields: [purchaseOrderId], references: [id], onDelete: Cascade)
+  rfqId           String
+  rfq             RFQ           @relation(fields: [rfqId], references: [id], onDelete: Cascade)
+  vendorId        String
+  vendor          Vendor        @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  status          InvoiceStatus @default(DRAFT)
+  invoiceDate     DateTime      @default(now())
+  dueDate         DateTime
+  subtotal        Float         @default(0)
+  cgstPercent     Float         @default(9)
+  sgstPercent     Float         @default(9)
+  cgstAmount      Float         @default(0)
+  sgstAmount      Float         @default(0)
+  grandTotal      Float         @default(0)
+  notes           String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  items           InvoiceItem[]
+}
+
+model InvoiceItem {
+  id        String  @id @default(cuid())
+  invoiceId String
+  invoice   Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  itemName  String
+  quantity  Float
+  unit      String
+  unitPrice Float
+  total     Float
 }
